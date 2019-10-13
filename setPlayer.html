@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>我是计分器</title>
+
+  <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+
+  <script src="./jquery.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- 返回键 -->
+  <div>
+    <a href="#" onclick="javascript:history.back(-1);">
+        <div class="arrow-box ml-20 mr-10">
+              <div class="arrow"></div><div class="stick"></div>
+        </div>
+    </a>
+  </div>
+
+  <div class="col-md-1 col-xs-12">
+  <!-- h1到h6标签可定义标题，h1最大 -->
+  <h2 style="text-align: center;" margin-top=50px;>玩家设置</h2>
+  </div>
+
+  <table class="table table-hover table-bordered">
+      <thead>
+      <!-- <tr> 标签定义 HTML 表格中的行。tr 元素包含一个或多个 th(粗)或 td(细) 元素。 -->
+          <tr>
+              <th class="col-md-1">玩家</th>
+              <th class="col-md-1" id="playerA"></th>
+              <th class="col-md-1" id="playerB"></th>
+              <th class="col-md-1" id="playerC"></th>
+              <th class="col-md-1" id="playerD"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+  </table>
+
+  <div class="col-md-2 col-xs-12 setting">
+  	<div class="input-group ">
+  		<!-- <span> 标签被用来组合文档中的行内元素。 -->
+    		<span class="input-group-addon" id="sizing-addon2" >玩家A</span>
+    		<input type="text" class="form-control" id="set_playerA" value="" aria-describedby="sizing-addon2">
+  	</div>
+  	<div class="input-group ">
+   		 <span class="input-group-addon" id="sizing-addon2">玩家B</span>
+   		 <input type="text" class="form-control" id="set_playerB" value="" aria-describedby="sizing-addon2">
+  	</div>
+  	<div class="input-group ">
+    		<span class="input-group-addon" id="sizing-addon2">玩家C</span>
+    		<input type="text" class="form-control" id="set_playerC" value="" aria-describedby="sizing-addon2">
+  	</div>
+  	<div class="input-group ">
+   		 <span class="input-group-addon" id="sizing-addon2">玩家D</span>
+   		 <input type="text" class="form-control" id="set_playerD" value="" aria-describedby="sizing-addon2">
+  	</div>
+  </div>
+
+  <div class="setPlayer-button">
+    <input type="button" value="增加" id="add_player"style="border:3px outset #50a8fa;"/>
+  	<input type="button" value="保存" id="save_player"style="border:3px outset #50a8fa;"/>
+	</div>
+
+
+</body>
+<script src="./main.js"></script>
+<script src="./quickwin.js"></script>
+</html>

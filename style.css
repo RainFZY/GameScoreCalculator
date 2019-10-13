@@ -1,0 +1,199 @@
+.t_title{
+  text-align: center;
+  margin: 5px 0 0 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius:  8px;
+  color: #fff;
+  font-family: "微软雅黑";
+  font-size: 15px;
+  background-color: #3c78d8;
+}
+/*
+@media screen and (min-width:769px){
+  .col-md-8{
+    margin-left: 50px;
+  }
+}
+@media screen and (min-width:1170px){
+  .col-md-8{
+    margin-left: 100px;
+  }
+}
+*/
+td,
+th{
+  text-align: center;
+}
+#first_tr{
+
+  background-color:#ccc;
+  font-weight: bold;
+}
+/* 清除数据栏下的第一个框框 */
+#delete_all{
+  /* 叉叉的颜色 */
+  color: rgb(250, 8, 8);
+  /* 框框背景颜色 */
+  background-color: #fff;
+}
+
+
+
+.setting{
+  margin: 5px 0 0 0;
+
+}
+
+
+#set_a,
+#set_b,
+#set_c,
+#set_d,
+#sizing-addon2{
+  text-align: center;
+  border:3px inset #50a8fa;
+  margin: 0px 0px 0px 0px;
+}
+
+
+/*新增一局界面的按钮*/
+#add_row,#save,#zero,#back,#add_player,#save_player
+{
+
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 12px 15px 3px 15px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 80px;
+}
+/*首页的按钮*/
+#set_player,#add_data,#view_history{
+  float: left;
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px 0px 10px 15px;
+  font-size: 14px;
+  font-weight:bold;
+  line-height: 2;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 90px;
+}
+
+#add_row:focus,
+#save:focus{
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+#add_row:hover,
+#save:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+#save_suc,#save_fail{
+  display: none;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+/* 新纪录和保存数据按钮 */
+.data{
+  margin:10px 0px 10px 0px;
+}
+
+.delete_c{
+  background-color: #fdfdfd;
+}
+/*设置玩家分数大框*/
+.input-group{
+  width: 250px;
+  margin:0 auto;
+  margin-bottom: 2px;
+}
+.add-button{
+  margin:0 auto;
+  text-align: center;
+}
+.setPlayer-button{
+  margin:0 auto;
+  text-align: center;
+}
+
+.arrow-box{
+    width: 40px; /*背景作为容器设置为方形*/
+    height: 40px;
+    position: relative; /*为箭头在容器中定位提供条件*/
+    border-radius: 50%; /*将正方形变为圆形*/
+    background: #50a8fa; /*蓝色背景*/
+    margin-top: 20px;
+}
+
+
+.arrow{
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    transform: rotate(-135deg);
+    margin: auto;
+    position: absolute; /*用于定位*/
+    top: 0; /*箭头上下都为0，可以将箭头垂直居中于容器*/
+    left: 12px; /*箭头定位于背景偏左的地方*/
+    bottom: 0;
+}
+
+.stick{
+    width: 14px;
+    background-color: #fff;
+    height: 2px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-left {
+    float: left;
+}
+.ml-20{
+    margin-left: 20px;
+}
+.mr-10{
+    margin-right: 0px;
+}
+.header{
+    color: black;
+    font-size: 2em;
+    margin-left:125px ;
+}
