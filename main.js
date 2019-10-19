@@ -4,18 +4,27 @@ $(document).ready(function(){
 	// tbody是id名
 	$("#tbody").append(storage.data);
 
-
-
 	$("#playerA").append(storage.aKey);
 	$("#playerB").append(storage.bKey);
 	$("#playerC").append(storage.cKey);
 	$("#playerD").append(storage.dKey);
+
+	//玩家设置界面的输入框同步显示玩家id
+	nameA = storage.getItem('aKey');
+	$('#set_playerA').val(nameA);
+	nameB = storage.getItem('bKey');
+	$('#set_playerB').val(nameB);
+	nameC = storage.getItem('cKey');
+	$('#set_playerC').val(nameC);
+	nameD = storage.getItem('dKey');
+	$('#set_playerD').val(nameD);
 
 // 主界面的总分
 	$("#a_sum1").append(storage.sumA);
 	$("#b_sum1").append(storage.sumB);
 	$("#c_sum1").append(storage.sumC);
 	$("#d_sum1").append(storage.sumD);
+	$("#game_num").append(storage.game_num);
 	// $("#first_tr").append(storage.data);
 
 	var a_arr = new Array();
@@ -23,20 +32,27 @@ $(document).ready(function(){
 	var c_arr = new Array();
 	var d_arr = new Array();
 
+	a_sum = 0;
+	b_sum = 0;
+	c_sum = 0;
+	d_sum = 0;
+	a_arr.length = 50;
+
+
 // 主界面的总分
 	a_sum1 = parseInt(storage.getItem('sumA'));
 	b_sum1 = parseInt(storage.getItem('sumB'));
 	c_sum1 = parseInt(storage.getItem('sumC'));
 	d_sum1 = parseInt(storage.getItem('sumD'));
-	a_arr.length = 50;
+	game_num = parseInt(storage.getItem('game_num'));
 
-	a_sum = 0;
-	b_sum = 0;
-	c_sum = 0;
-	d_sum = 0;
+
+
+
 	/*将localStorage的值赋给数组*/
 	var trows = $("#tbody tr").length + 1;
-	for (var i = 1; i < trows; i++) {
+
+	for (var i = 1; i < game_num+50; i++) {
 		/*storage.setItem('a_'+i,0);
 		storage.setItem('b_'+i,0);
 		storage.setItem('c_'+i,0);
@@ -47,23 +63,16 @@ $(document).ready(function(){
 		//storage.getItem('d_'+i);
 
 		a_arr[i]= parseInt(storage.getItem('a_'+i));
-		a_sum += a_arr[i];
 		b_arr[i]= parseInt(storage.getItem('b_'+i));
-		b_sum += b_arr[i];
 		c_arr[i]= parseInt(storage.getItem('c_'+i));
-		c_sum += c_arr[i];
 		d_arr[i]= parseInt(storage.getItem('d_'+i));
-		d_sum += d_arr[i];
-
-
-
-		$("#a_sum").html(a_sum);
-		$("#b_sum").html(b_sum);
-		$("#c_sum").html(c_sum);
-		$("#d_sum").html(d_sum);
-
 
 	}
+	a_sum = parseInt(storage.getItem('sumA'));
+	b_sum = parseInt(storage.getItem('sumB'));
+	c_sum = parseInt(storage.getItem('sumC'));
+	d_sum = parseInt(storage.getItem('sumD'));
+
 
 	/*显示总分*/
 	// html()意思是显示其html内容
@@ -71,6 +80,7 @@ $(document).ready(function(){
 	$("#b_sum").html(b_sum);
 	$("#c_sum").html(c_sum);
 	$("#d_sum").html(d_sum);
+	$("game_num").html(game_num);
 
 
 	/*删除除第一行外的所有行*/
@@ -85,10 +95,12 @@ $(document).ready(function(){
 		b_sum = 0;
 		c_sum = 0;
 		d_sum = 0;
+		game_num = 0;
  		$("#a_sum").html(a_sum);
 		$("#b_sum").html(b_sum);
 		$("#c_sum").html(c_sum);
 		$("#d_sum").html(d_sum);
+		$("#game_num").html(game_num);
 		$("tbody  tr:not(:first)").remove();
 
 		storage.removeItem("data");
@@ -96,6 +108,7 @@ $(document).ready(function(){
 		storage.setItem('sumB',b_sum);//主界面的总分
 		storage.setItem('sumC',c_sum);//主界面的总分
 		storage.setItem('sumD',d_sum);//主界面的总分
+		storage.setItem('game_num',game_num);
 		return false;
 	});
 
@@ -132,6 +145,10 @@ $(document).ready(function(){
     	d_sum = d_sum + d_arr[trows];
 			storage.setItem('sumD',d_sum);
 		$("#d_sum").html(d_sum);
+		//游戏局数
+		game_num += 1;
+		storage.setItem('game_num',game_num);
+		$("#game_num").html(game_num);
 
 		// append，加上这行
 		var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
@@ -144,6 +161,7 @@ $(document).ready(function(){
 		storage.setItem('aKey',player_a);
 		nameA = storage.getItem('aKey');
 		$("#playerA").html(nameA);
+
 
 		var player_b = $("#set_playerB").val();
 		storage.setItem('bKey',player_b);
@@ -189,6 +207,10 @@ $(document).ready(function(){
    		d_arr[this_id] = 0;
    		storage.setItem('d_'+this_id,0);
    		$("#d_sum").html(d_sum);
+
+			game_num -= 1;
+			storage.setItem('game_num',game_num);
+			$("#game_num").html(game_num);
 
    		storage.removeItem("data");
    		$(this).parent().parent().remove();
