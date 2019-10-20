@@ -29,7 +29,7 @@
   <h2 style="text-align: center;" margin-top=0px;>新增一局</h2>
   </div>
 
-  <div class="table-responsive col-md-8 col-xs-12">
+  <div class="table-responsive col-md-8 col-xs-12" style="margin-top:20px;">
   	<!-- <table> 标签定义 HTML 表格 -->
   	<table class="table table-hover table-bordered">
   		<!-- <p> 标签定义段落。p 元素会自动在其前后创建一些空白。 -->
@@ -43,7 +43,7 @@
               	<th class="col-md-1" id="playerB"></th>
               	<th class="col-md-1" id="playerC"></th>
               	<th class="col-md-1" id="playerD"></th>
-                <th class="col-md-1">清除</th>
+
             	</tr>
           </thead>
           <tbody id="tbody1">
@@ -53,18 +53,11 @@
               	<td id="b_sum">0</td>
               	<td id="c_sum">0</td>
               	<td id="d_sum">0</td>
-                <td id="delete_all"><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+
             	</tr>
-            	<tbody id="tbody">
-          	<!--<tr>
-              	<th scope="row" id="1">第1局</th>
-              	<td>Table cell</td>
-              	<td>Table cell</td>
-              	<td>Table cell</td>
-              	<td>Table cell</td>
-              	<td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
-            	</tr>-->
-  			</tbody>
+              <!-- add页面的表格body隐藏 -->
+            	<tbody id="tbody" style="display:none">
+  			      </tbody>
   		</tbody>
   	</table>
 

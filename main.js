@@ -153,6 +153,7 @@ $(document).ready(function(){
 		// append，加上这行
 		var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
 		$("#tbody").append($this_row);
+
 	});
 
 //保存玩家修改

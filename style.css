@@ -57,7 +57,7 @@ th{
 
 
 /*新增一局界面的按钮*/
-#add_row,#save,#zero,#back,#add_player,#save_player
+#add_row,#save,#zero,#back
 {
 
   display: inline-block;
@@ -79,6 +79,30 @@ th{
   border-color: #ccc;
   width: 80px;
 }
+/*玩家设置界面的按钮*/
+#add_player,#save_player
+{
+
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 30px 15px 3px 15px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 80px;
+}
+
 /*首页的按钮*/
 #set_player,#add_data,#view_history{
   float: left;
@@ -144,7 +168,7 @@ th{
   text-align: center;
 }
 .setPlayer-button{
-  margin:0 auto;
+  margin: auto;
   text-align: center;
 }
 
