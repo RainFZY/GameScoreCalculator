@@ -2,12 +2,20 @@ var storage = window.localStorage;
 
 $(document).ready(function(){
 	// tbody是id名
+
+
 	$("#tbody").append(storage.data);
 
 	$("#playerA").append(storage.aKey);
 	$("#playerB").append(storage.bKey);
 	$("#playerC").append(storage.cKey);
 	$("#playerD").append(storage.dKey);
+	// 修改某一局记录页面的玩家
+	$("#text1").append(storage.modify_a);
+	$("#text2").append(storage.modify_b);
+	$("#text3").append(storage.modify_c);
+	$("#text4").append(storage.modify_d);
+
 
 	//玩家设置界面的输入框同步显示玩家id
 	nameA = storage.getItem('aKey');
@@ -25,6 +33,7 @@ $(document).ready(function(){
 	$("#c_sum1").append(storage.sumC);
 	$("#d_sum1").append(storage.sumD);
 	$("#game_num").append(storage.game_num);
+	$("#game_index").append(storage.game_index);
 	// $("#first_tr").append(storage.data);
 
 	var a_arr = new Array();
@@ -45,6 +54,7 @@ $(document).ready(function(){
 	c_sum1 = parseInt(storage.getItem('sumC'));
 	d_sum1 = parseInt(storage.getItem('sumD'));
 	game_num = parseInt(storage.getItem('game_num'));
+
 
 
 
@@ -152,6 +162,7 @@ $(document).ready(function(){
 
 		// append，加上这行
 		var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+		// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
 		$("#tbody").append($this_row);
 
 	});
@@ -162,22 +173,32 @@ $(document).ready(function(){
 		storage.setItem('aKey',player_a);
 		nameA = storage.getItem('aKey');
 		$("#playerA").html(nameA);
+		// 修改某局分数中的玩家栏
+		var modify_a = "修改" + $("#set_playerA").val() + "的分数：";
+		storage.setItem('modify_a',modify_a);
+
 
 
 		var player_b = $("#set_playerB").val();
 		storage.setItem('bKey',player_b);
 		nameB = storage.getItem('bKey');
 		$("#playerB").html(nameB);
+		var modify_b = "修改" + $("#set_playerB").val() + "的分数：";
+		storage.setItem('modify_b',modify_b);
 
 		var player_c = $("#set_playerC").val();
 		storage.setItem('cKey',player_c);
 		nameC = storage.getItem('cKey');
 		$("#playerC").html(nameC);
+		var modify_c = "修改" + $("#set_playerC").val() + "的分数：";
+		storage.setItem('modify_c',modify_c);
 
 		var player_d = $("#set_playerD").val();
 		storage.setItem('dKey',player_d);
 		nameD = storage.getItem('dKey');
 		$("#playerD").html(nameD);
+		var modify_d = "修改" + $("#set_playerD").val() + "的分数：";
+		storage.setItem('modify_d',modify_d);
 	});
 
 
@@ -258,6 +279,16 @@ $(document).ready(function(){
 		window.location.href='viewHistory.html';
 	});
 
+// 历史记录页面，点击第x局进入修改记录页面，并同步局数
+	for (i = 1; i < 50; i++) {
+		$("#"+i).click(function(){
+			game_index = $(this).attr('id');
+			storage.setItem('game_index',game_index);
+			$("#game_index").html(game_index)
+			window.location.href='modify.html';
+		});
+	 }
+
 
 
 	/*自动保存*/
@@ -278,24 +309,4 @@ $(document).ready(function(){
 	setInterval(sumaver,100);
 
 
-
-
-/*
-	storage.setItem("b",0);
-	$("#add").click(function add(){
- 		if(!storage.getItem("a")){storage.setItem("a",0);}
- 		storage.setItem('a',parseInt(storage.getItem('a'))+1);
- 		$("#a_value").html(storage.a);
-	});
-
-	$("#del").click(function add(){
-		storage.b = 0;
-		$('#b_value').html(storage.b);
-	});
-	$('#set_b').bind('input propertychange', function() {
-    $('#b_value').html($(this).val());
-    storage.b = $('#b_value').html();
-	});
-
-*/
 });
