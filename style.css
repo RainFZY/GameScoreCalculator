@@ -45,10 +45,8 @@ th{
 }
 
 
-#set_a,
-#set_b,
-#set_c,
-#set_d,
+#set_a,#set_b,#set_c,#set_d,
+#mod_a,#mod_b,#mod_c,#mod_d,
 #sizing-addon2{
   text-align: center;
   border:3px inset #50a8fa;
@@ -57,7 +55,7 @@ th{
 
 
 /*新增一局界面的按钮*/
-#add_row,#save,#zero,#back
+#add_row,#save,#zero,#back,#confirm_mod
 {
 
   display: inline-block;
