@@ -2,8 +2,6 @@ var storage = window.localStorage;
 
 $(document).ready(function(){
 	// tbody是id名
-
-
 	$("#tbody").append(storage.data);
 
 	$("#playerA").append(storage.aKey);
@@ -15,7 +13,6 @@ $(document).ready(function(){
 	$("#text2").append(storage.modify_b);
 	$("#text3").append(storage.modify_c);
 	$("#text4").append(storage.modify_d);
-
 
 	//玩家设置界面的输入框同步显示玩家id
 	nameA = storage.getItem('aKey');
@@ -57,16 +54,12 @@ $(document).ready(function(){
 	d_sum = 0;
 	a_arr.length = 50;
 
-
 // 主界面的总分
 	a_sum1 = parseInt(storage.getItem('sumA'));
 	b_sum1 = parseInt(storage.getItem('sumB'));
 	c_sum1 = parseInt(storage.getItem('sumC'));
 	d_sum1 = parseInt(storage.getItem('sumD'));
 	game_num = parseInt(storage.getItem('game_num'));
-
-
-
 
 
 	/*将localStorage的值赋给数组*/
@@ -139,76 +132,103 @@ $(document).ready(function(){
 		var trows = $("#tbody tr").length + 1;
 		//set_a为设置玩家A分数的id
 		var set_a = $("#set_a").val();
-    	storage.setItem('a_'+trows,set_a);
+		var set_b = $("#set_b").val();
+		var set_c = $("#set_c").val();
+		var set_d = $("#set_d").val();
+
+		// tbody部分所有数据
+		var old_data = $("#1").parent().parent().html();
+		//有数据则保存数据并显示保存成功消息
+		if (set_a != "" && set_b != "" && set_c != "" && set_d != "") {
+			storage.setItem('a_'+trows,set_a);
     	a_arr[trows] = parseInt(storage.getItem('a_'+trows));
     	a_sum = a_sum + a_arr[trows];
 			storage.setItem('sumA',a_sum);//主界面的总分
     	$("#a_sum").html(a_sum);
 
-    	var set_b = $("#set_b").val();
     	storage.setItem('b_'+trows,set_b);
     	b_arr[trows] = parseInt(storage.getItem('b_'+trows));
     	b_sum = b_sum + b_arr[trows];
 			storage.setItem('sumB',b_sum);
     	$("#b_sum").html(b_sum);
 
-    	var set_c = $("#set_c").val();
     	storage.setItem('c_'+trows,set_c);
     	c_arr[trows] = parseInt(storage.getItem('c_'+trows));
     	c_sum = c_sum + c_arr[trows];
 			storage.setItem('sumC',c_sum);
     	$("#c_sum").html(c_sum);
 
-    	var set_d = $("#set_d").val();
     	storage.setItem('d_'+trows,set_d);
     	d_arr[trows] = parseInt(storage.getItem('d_'+trows));
     	d_sum = d_sum + d_arr[trows];
 			storage.setItem('sumD',d_sum);
-		$("#d_sum").html(d_sum);
-		//游戏局数
-		game_num += 1;
-		storage.setItem('game_num',game_num);
-		$("#game_num").html(game_num);
+			$("#d_sum").html(d_sum);
+			//游戏局数
+			game_num += 1;
+			storage.setItem('game_num',game_num);
+			$("#game_num").html(game_num);
 
-		// append，加上这行
-		var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
-		// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
-		$("#tbody").append($this_row);
+			// append，加上这行
+			var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+			// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+			$("#tbody").append($this_row);
 
+			storage.setItem('data',old_data);
+			$("#save_suc").show();
+			if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+			}
+		}
+		/*无数据则显示保存失败*/
+		else{
+			$("#save_fail").show();
+			/*设置5秒后提示消息消失*/
+			setTimeout(function(){$("#save_fail").hide()},5000);
+		}
 	});
 
 //保存玩家修改
 	$("#save_player").click(function(){
 		var player_a = $("#set_playerA").val();
-		storage.setItem('aKey',player_a);
-		nameA = storage.getItem('aKey');
-		$("#playerA").html(nameA);
-		// 修改某局分数中的玩家栏
-		var modify_a = "修改" + $("#set_playerA").val() + "的分数：";
-		storage.setItem('modify_a',modify_a);
-
-
-
 		var player_b = $("#set_playerB").val();
-		storage.setItem('bKey',player_b);
-		nameB = storage.getItem('bKey');
-		$("#playerB").html(nameB);
-		var modify_b = "修改" + $("#set_playerB").val() + "的分数：";
-		storage.setItem('modify_b',modify_b);
-
 		var player_c = $("#set_playerC").val();
-		storage.setItem('cKey',player_c);
-		nameC = storage.getItem('cKey');
-		$("#playerC").html(nameC);
-		var modify_c = "修改" + $("#set_playerC").val() + "的分数：";
-		storage.setItem('modify_c',modify_c);
-
 		var player_d = $("#set_playerD").val();
-		storage.setItem('dKey',player_d);
-		nameD = storage.getItem('dKey');
-		$("#playerD").html(nameD);
-		var modify_d = "修改" + $("#set_playerD").val() + "的分数：";
-		storage.setItem('modify_d',modify_d);
+		// 保证玩家id不得为空
+		if (player_a.length<=3 && player_b.length<=3 && player_c.length<=3 && player_d.length<=3) {
+			storage.setItem('aKey',player_a);
+			nameA = storage.getItem('aKey');
+			$("#playerA").html(nameA);
+			// 修改某局分数中的玩家栏
+			var modify_a = "玩家 " + $("#set_playerA").val() + " 的分数";
+			storage.setItem('modify_a',modify_a);
+
+			storage.setItem('bKey',player_b);
+			nameB = storage.getItem('bKey');
+			$("#playerB").html(nameB);
+			var modify_b = "玩家 " + $("#set_playerB").val() + " 的分数";
+			storage.setItem('modify_b',modify_b);
+
+			storage.setItem('cKey',player_c);
+			nameC = storage.getItem('cKey');
+			$("#playerC").html(nameC);
+			var modify_c = "玩家 " + $("#set_playerC").val() + " 的分数";
+			storage.setItem('modify_c',modify_c);
+
+			storage.setItem('dKey',player_d);
+			nameD = storage.getItem('dKey');
+			$("#playerD").html(nameD);
+			var modify_d = "玩家 " + $("#set_playerD").val() + " 的分数";
+			storage.setItem('modify_d',modify_d);
+
+			$("#save_suc").show();
+			if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+			}
+		}
+		else{
+			$("#save_fail").show();
+			setTimeout(function(){$("#save_fail").hide()},5000);
+		}
 	});
 
 
@@ -250,26 +270,6 @@ $(document).ready(function(){
    		if (this_id>1) {
     		$("."+pre_id+" .delete_c").show();
     	}
-	});
-
-
-	/*保存按钮*/
-	$("#save").click(function() {
-		var old_data = $("#1").parent().parent().html();
-		/*有数据则保存数据并显示保存成功消息*/
-		if (old_data != undefined) {
-			storage.setItem('data',old_data);
-			$("#save_suc").show();
-			if ($("#save_suc").is(":visible")) {
-			setTimeout(function(){$("#save_suc").hide()},5000);
-			}
-		}
-		/*无数据则显示保存失败*/
-		else{
-			$("#save_fail").show();
-			setTimeout(function(){$("#save_fail").hide()},5000);
-		}
-		/*设置5秒后提示消息消失*/
 	});
 
 
@@ -315,48 +315,57 @@ $(document).ready(function(){
 		 game_index = storage.getItem('game_index');
 
 		 var mod_a = $("#mod_a").val();//读取输入框的分数
-		 a_sum = a_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;//总分先减去原单元格的分数
-		 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML = mod_a;
-		 storage.setItem('a_'+game_index,mod_a);
-		 a_arr[game_index] = parseInt(storage.getItem('a_'+game_index));
-		 a_sum = a_sum + a_arr[game_index];//再加上新的修改后分数
-		 storage.setItem('sumA',a_sum);//主界面的总分
-		 $("#a_sum").html(a_sum);
-
 		 var mod_b = $("#mod_b").val();//读取输入框的分数
-		 b_sum = b_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;//总分先减去原单元格的分数
-		 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML = mod_b;
-		 storage.setItem('b_'+game_index,mod_b);
-		 b_arr[game_index] = parseInt(storage.getItem('b_'+game_index));
-		 b_sum = b_sum + b_arr[game_index];//再加上新的修改后分数
-		 storage.setItem('sumB',b_sum);//主界面的总分
-		 $("#b_sum").html(b_sum);
-
 		 var mod_c = $("#mod_c").val();//读取输入框的分数
-		 c_sum = c_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;//总分先减去原单元格的分数
-		 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML = mod_c;
-		 storage.setItem('c_'+game_index,mod_c);
-		 c_arr[game_index] = parseInt(storage.getItem('c_'+game_index));
-		 c_sum = c_sum + c_arr[game_index];//再加上新的修改后分数
-		 storage.setItem('sumC',c_sum);//主界面的总分
-		 $("#c_sum").html(c_sum);
-
 		 var mod_d = $("#mod_d").val();//读取输入框的分数
-		 d_sum = d_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;//总分先减去原单元格的分数
-		 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML = mod_d;
-		 storage.setItem('d_'+game_index,mod_d);
-		 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
-		 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
-		 storage.setItem('sumD',d_sum);//主界面的总分
-		 $("#d_sum").html(d_sum);
+		 // 保证输入不为空
+		 if(mod_a!="" && mod_b!="" && mod_c!="" && mod_d!=""){
+			 a_sum = a_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML = mod_a;
+			 storage.setItem('a_'+game_index,mod_a);
+			 a_arr[game_index] = parseInt(storage.getItem('a_'+game_index));
+			 a_sum = a_sum + a_arr[game_index];//再加上新的修改后分数
+			 storage.setItem('sumA',a_sum);//主界面的总分
+			 $("#a_sum").html(a_sum);
 
+			 b_sum = b_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML = mod_b;
+			 storage.setItem('b_'+game_index,mod_b);
+			 b_arr[game_index] = parseInt(storage.getItem('b_'+game_index));
+			 b_sum = b_sum + b_arr[game_index];//再加上新的修改后分数
+			 storage.setItem('sumB',b_sum);//主界面的总分
+			 $("#b_sum").html(b_sum);
+
+			 c_sum = c_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML = mod_c;
+			 storage.setItem('c_'+game_index,mod_c);
+			 c_arr[game_index] = parseInt(storage.getItem('c_'+game_index));
+			 c_sum = c_sum + c_arr[game_index];//再加上新的修改后分数
+			 storage.setItem('sumC',c_sum);//主界面的总分
+			 $("#c_sum").html(c_sum);
+
+			 d_sum = d_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML = mod_d;
+			 storage.setItem('d_'+game_index,mod_d);
+			 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
+			 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
+			 storage.setItem('sumD',d_sum);//主界面的总分
+			 $("#d_sum").html(d_sum);
+
+			 $("#save_suc").show();
+			 if ($("#save_suc").is(":visible")) {
+			 setTimeout(function(){$("#save_suc").hide()},5000);
+		 }}
+		 else{
+			 $("#save_fail").show();
+ 			 setTimeout(function(){$("#save_fail").hide()},5000);
+		 }
 	 });
-
-
 
 	/*自动保存*/
 	function auto_save() {
 		var old_data = $("#1").parent().parent().html();
+		//console.log(old_data);
 		/*有数据则保存数据*/
 		if (old_data != undefined) {
 			storage.setItem('data',old_data);
@@ -370,6 +379,5 @@ $(document).ready(function(){
 		aver = all/4;
 	};
 	setInterval(sumaver,100);
-
 
 });

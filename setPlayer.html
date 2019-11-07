@@ -15,7 +15,7 @@
 
 <body>
   <!-- 返回键 -->
-  <div>
+  <div style="margin-top:50px;">
     <a href="#" onclick="javascript:history.back(-1);">
         <div class="arrow-box ml-20 mr-10">
               <div class="arrow"></div><div class="stick"></div>
@@ -64,9 +64,24 @@
   </div>
 
   <div class="setPlayer-button">
-    <input type="button" value="增加" id="add_player"style="border:3px outset #50a8fa;"/>
   	<input type="button" value="保存" id="save_player"style="border:3px outset #50a8fa;"/>
 	</div>
+
+  <div class="alert alert-danger alert-dismissable" id="save_fail">
+    <button type="button" class="close" data-dismiss="alert"
+      aria-hidden="true">
+      &times;
+    </button>
+    玩家昵称不能超过3个字！
+  </div>
+
+  <div class="alert alert-info alert-dismissable" id="save_suc" >
+    <button type="button" class="close" data-dismiss="alert"
+      aria-hidden="true">
+      &times;
+    </button>
+    保存玩家信息成功！
+  </div class="col-md-2 col-sm-12 col-xs-12">
 
 
 </body>

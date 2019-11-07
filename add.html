@@ -16,7 +16,7 @@
 
 <body>
   <!-- 返回键 -->
-  <div>
+  <div style="margin-top:30px;">
     <a href="#" onclick="javascript:history.back(-1);">
         <div class="arrow-box nav-left ml-20 mr-10">
               <div class="arrow"></div><div class="stick"></div>
@@ -70,23 +70,22 @@
 	<div class="input-group ">
 		<!-- <span> 标签被用来组合文档中的行内元素。 -->
   		<span class="input-group-addon" id="sizing-addon2" >设置玩家A的分数</span>
-  		<input type="number" class="form-control" id="set_a" value="0" aria-describedby="sizing-addon2">
+  		<input type="number" class="form-control" id="set_a" value="" aria-describedby="sizing-addon2">
 	</div>
 	<div class="input-group ">
  		 <span class="input-group-addon" id="sizing-addon2">设置玩家B的分数</span>
- 		 <input type="number" class="form-control" id="set_b" value="0" aria-describedby="sizing-addon2">
+ 		 <input type="number" class="form-control" id="set_b" value="" aria-describedby="sizing-addon2">
 	</div>
 	<div class="input-group ">
   		<span class="input-group-addon" id="sizing-addon2">设置玩家C的分数</span>
-  		<input type="number" class="form-control" id="set_c" value="0" aria-describedby="sizing-addon2">
+  		<input type="number" class="form-control" id="set_c" value="" aria-describedby="sizing-addon2">
 	</div>
 	<div class="input-group ">
  		 <span class="input-group-addon" id="sizing-addon2">设置玩家D的分数</span>
- 		 <input type="number" class="form-control" id="set_d" value="0" aria-describedby="sizing-addon2">
+ 		 <input type="number" class="form-control" id="set_d" value="" aria-describedby="sizing-addon2">
 	</div>
   <div class="add-button" style="margin-top:20px;">
-   <input type="button" value="确认" id="add_row"style="border:3px outset #50a8fa;"  />
-	 <input type="button" value="保存" id="save"style="border:3px outset #50a8fa;"  />
+   <input type="button" value="保存" id="add_row"style="border:3px outset #50a8fa;"  />
 	</div>
 
   <div class="alert alert-danger alert-dismissable" id="save_fail">
@@ -94,7 +93,7 @@
       aria-hidden="true">
       &times;
    	</button>
-   	请输入数据再保存！
+   	请输全分数再保存！
 	</div>
 
 	<div class="alert alert-info alert-dismissable" id="save_suc" >
