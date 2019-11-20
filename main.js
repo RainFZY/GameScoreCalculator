@@ -61,7 +61,28 @@ $(document).ready(function(){
 	d_sum1 = parseInt(storage.getItem('sumD'));
 	game_num = parseInt(storage.getItem('game_num'));
 
+	// 首页显示最高分玩家
+	var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
+	arr.sort(function(a,b){
+			return b - a
+	})
+	if(arr[0]==a_sum1){
+		max_name = nameA;
+	}
+	else if (arr[0]==b_sum1) {
+		max_name = nameB;
+	}
+	else if (arr[0]==c_sum1) {
+		max_name = nameC;
+	}
+	else{
+		max_name = nameD;
+	}
+	console.log(max_name);
+	$("#max_name").val(max_name);
+	$("#max_name").html("目前得分最高："+max_name);
 
+	
 	/*将localStorage的值赋给数组*/
 	var trows = $("#tbody tr").length + 1;
 
