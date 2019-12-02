@@ -11,14 +11,16 @@ function startdraw(){
     "title": "个人积分",
     "verticaltitle": "积分",
     "horizontaltitle": "",
-    "data": [{ "category": "", "datacollection": [{ "title": "  A", "amount": ""+a_sum+"" }, { "title": "  B", "amount": ""+b_sum+"" }, { "title": "  C", "amount": ""+c_sum+"" }, { "title": "  D", "amount": ""+d_sum+"" }] }]
+    "data": [{ "category": "", "datacollection": [{ "title": ""+nameA+"", "amount": ""+a_sum+"" },
+    { "title": ""+nameB+"", "amount": ""+b_sum+"" }, { "title": ""+nameC+"", "amount": ""+c_sum+"" },
+    { "title": ""+nameD+"", "amount": ""+d_sum+"" }] }]
   };
   // 四个玩家分数和不为0时显示直方图，否则不显示
-  if (aver != 0) {
+  if (aver > 0) {
     $("#myCanvas").show();
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    var v = new histogram(ctx,jasonData,aver);
+    var v = new histogram(ctx,jasonData,aver); // 调用histogram.js中的函数
     v.draw();
   }
   else{
