@@ -47,7 +47,7 @@ th{
 
 #set_a,#set_b,#set_c,#set_d,
 #mod_a,#mod_b,#mod_c,#mod_d,
-#sizing-addon2{
+#sizing-addon2,#game_sum{
   text-align: center;
   border:3px inset #50a8fa;
   margin: 0px 0px 0px 0px;
@@ -55,7 +55,7 @@ th{
 
 
 /*新增一局界面的按钮*/
-#add_row,#save,#zero,#back,#confirm_mod
+#add_row,#save,#zero,#back,#confirm_mod,#set_sum,#confirm_sum
 {
 
   display: inline-block;

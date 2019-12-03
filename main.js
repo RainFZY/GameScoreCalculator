@@ -1,6 +1,7 @@
 var storage = window.localStorage;
 
 $(document).ready(function(){
+
 	// tbody是id名
 	$("#tbody").append(storage.data);
 
@@ -30,7 +31,8 @@ $(document).ready(function(){
 	$("#c_sum1").append(storage.sumC);
 	$("#d_sum1").append(storage.sumD);
 	$("#game_num").append(storage.game_num);
-	$("#game_index").append(storage.game_index);
+	$("#game_sum").append(storage.game_sum);
+
 	// $("#first_tr").append(storage.data);
 
 	//修改记录界面输入框同步当局分数
@@ -61,6 +63,7 @@ $(document).ready(function(){
 	d_sum1 = parseInt(storage.getItem('sumD'));
 	game_num = parseInt(storage.getItem('game_num'));
 
+
 	// 首页显示最高分玩家
 	var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
 	arr.sort(function(a,b){
@@ -78,11 +81,11 @@ $(document).ready(function(){
 	else{
 		max_name = nameD;
 	}
-	console.log(max_name);
+	// console.log(max_name);
 	$("#max_name").val(max_name);
 	$("#max_name").html("目前得分最高："+max_name);
 
-	
+
 	/*将localStorage的值赋给数组*/
 	var trows = $("#tbody tr").length + 1;
 
@@ -95,13 +98,12 @@ $(document).ready(function(){
 		//storage.getItem('b_'+i);
 		//storage.getItem('c_'+i);
 		//storage.getItem('d_'+i);
-
 		a_arr[i]= parseInt(storage.getItem('a_'+i));
 		b_arr[i]= parseInt(storage.getItem('b_'+i));
 		c_arr[i]= parseInt(storage.getItem('c_'+i));
 		d_arr[i]= parseInt(storage.getItem('d_'+i));
-
 	}
+
 	a_sum = parseInt(storage.getItem('sumA'));
 	b_sum = parseInt(storage.getItem('sumB'));
 	c_sum = parseInt(storage.getItem('sumC'));
@@ -115,6 +117,10 @@ $(document).ready(function(){
 	$("#c_sum").html(c_sum);
 	$("#d_sum").html(d_sum);
 	$("game_num").html(game_num);
+
+	// setSum界面输入框同步显示单局总分
+	game_sum = storage.getItem('game_sum');
+	$('#game_sum').val(game_sum);
 
 
 	/*删除除第一行外的所有行*/
@@ -147,7 +153,30 @@ $(document).ready(function(){
 	});
 
 
-	/*加一局按钮*/
+	/*新增一局的预设按钮*/
+	$("#set_sum").click(function(){
+		window.location.href='setSum.html';
+	});
+	/*设置单局总分的保存按钮*/
+	$("#confirm_sum").click(function(){
+		var game_sum = $("#game_sum").val();
+		// 成功保存条件
+		if(game_sum >= 0){
+			storage.setItem('game_sum',game_sum);
+			$("#save_suc").show();
+			if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+			}
+		}
+		// 保存失败情况
+		else{
+			$("#save_fail").show();
+			/*设置5秒后提示消息消失*/
+			setTimeout(function(){$("#save_fail").hide()},5000);
+		}
+	});
+
+	/*新增一局的保存按钮*/
 	$("#add_row").click(function(){
 		//加一行，var声明变量
 		var trows = $("#tbody tr").length + 1;
@@ -156,6 +185,26 @@ $(document).ready(function(){
 		var set_b = $("#set_b").val();
 		var set_c = $("#set_c").val();
 		var set_d = $("#set_d").val();
+
+		game_sum = storage.getItem('game_sum');
+		// console.log(game_sum);
+
+		if(set_a == "" && set_b != "" && set_c != "" && set_d != ""){
+			set_a = game_sum - set_b -set_c - set_d;
+			$("#set_a").val(set_a);
+		}
+		else if (set_b == "" && set_a != "" && set_c != "" && set_d != "") {
+			set_b = game_sum - set_a -set_c - set_d;
+			$("#set_b").val(set_b);
+		}
+		else if (set_c == "" && set_b != "" && set_a != "" && set_d != "") {
+			set_c = game_sum - set_a -set_b - set_d;
+			$("#set_c").val(set_c);
+		}
+		else if (set_d == "" && set_b != "" && set_a != "" && set_c != ""){
+			set_d = game_sum - set_a - set_b - set_c;
+			$("#set_d").val(set_d);
+		}
 
 		// tbody部分所有数据
 		var old_data = $("#1").parent().parent().html();
