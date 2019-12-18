@@ -85,6 +85,10 @@ $(document).ready(function(){
 	$("#max_name").val(max_name);
 	$("#max_name").html("目前得分最高："+max_name);
 
+	// 修改记录界面的局数
+	game_index=parseInt(storage.getItem('game_index'));
+	$("#game_index").html("局数："+game_index);
+
 
 	/*将localStorage的值赋给数组*/
 	var trows = $("#tbody tr").length + 1;
@@ -125,31 +129,34 @@ $(document).ready(function(){
 
 	/*删除除第一行外的所有行*/
 	$("#delete_all").click(function(){
-		for (var i = 1; i < a_arr.length; i++) {
- 			storage.removeItem('a_'+i);
- 			storage.removeItem('b_'+i);
- 			storage.removeItem('c_'+i);
- 			storage.removeItem('d_'+i);
- 		}
- 		a_sum = 0;
-		b_sum = 0;
-		c_sum = 0;
-		d_sum = 0;
-		game_num = 0;
- 		$("#a_sum").html(a_sum);
-		$("#b_sum").html(b_sum);
-		$("#c_sum").html(c_sum);
-		$("#d_sum").html(d_sum);
-		$("#game_num").html(game_num);
-		$("tbody  tr:not(:first)").remove();
+		// 加一个删除提示框
+		if(confirm("确定要删除所有记录吗？")){
+			for (var i = 1; i < a_arr.length; i++) {
+	 			storage.removeItem('a_'+i);
+	 			storage.removeItem('b_'+i);
+	 			storage.removeItem('c_'+i);
+	 			storage.removeItem('d_'+i);
+	 		}
+	 		a_sum = 0;
+			b_sum = 0;
+			c_sum = 0;
+			d_sum = 0;
+			game_num = 0;
+	 		$("#a_sum").html(a_sum);
+			$("#b_sum").html(b_sum);
+			$("#c_sum").html(c_sum);
+			$("#d_sum").html(d_sum);
+			$("#game_num").html(game_num);
+			$("tbody  tr:not(:first)").remove();
 
-		storage.removeItem("data");
-		storage.setItem('sumA',a_sum);//主界面的总分
-		storage.setItem('sumB',b_sum);//主界面的总分
-		storage.setItem('sumC',c_sum);//主界面的总分
-		storage.setItem('sumD',d_sum);//主界面的总分
-		storage.setItem('game_num',game_num);
-		return false;
+			storage.removeItem("data");
+			storage.setItem('sumA',a_sum);//主界面的总分
+			storage.setItem('sumB',b_sum);//主界面的总分
+			storage.setItem('sumC',c_sum);//主界面的总分
+			storage.setItem('sumD',d_sum);//主界面的总分
+			storage.setItem('game_num',game_num);
+			// return false;
+		}
 	});
 
 
@@ -239,7 +246,7 @@ $(document).ready(function(){
 			$("#game_num").html(game_num);
 
 			// append，加上这行
-			var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+			var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'" class="left">第'+trows+'局</th><td class="left">'+set_a+'</td><td class="left">'+set_b+'</td><td class="left">'+set_c+'</td><td class="left">'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
 			// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
 			$("#tbody").append($this_row);
 
@@ -302,9 +309,15 @@ $(document).ready(function(){
 	});
 
 
-	/*删除此行*/
-	$('#tbody').on("click",'.delete_c', function() {
+// 历史记录界面，点击表格除了清楚栏的区域，跳转至修改记录界面
+$('#tbody').on("click",'.left', function() {
+	window.location.href='modify.html';
+});
 
+// 历史记录界面删除一局的分数
+	$('#tbody').on("click",'.delete_c', function() {
+		// 加一个删除提示框
+		if(confirm("确定要删除该局分数吗？")){
    		var this_id = $(this).parent().parent().attr("class");
    		a_sum = a_sum - a_arr[this_id];
 			storage.setItem('sumA',a_sum);//主界面的总分
@@ -340,6 +353,7 @@ $(document).ready(function(){
    		if (this_id>1) {
     		$("."+pre_id+" .delete_c").show();
     	}
+		}
 	});
 
 
@@ -360,12 +374,13 @@ $(document).ready(function(){
 		window.location.href='viewHistory.html';
 	});
 
-// 历史记录页面，点击某一行进入修改记录页面，并同步局数
+// 历史记录页面，若跳转进入修改记录页面，对记录进行修改，并同步局数
 	for (i = 1; i < 50; i++) {
+ // $('#tbody').on("click",'.left',function(){
 		$("."+i).click(function(){
 			game_index = $(this).attr('class');
 			storage.setItem('game_index',game_index);
-			$("#game_index").html(game_index);
+
 			//mod_a = $(this).attr('class');
 			mod_a = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;
 			mod_b = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;
@@ -377,10 +392,9 @@ $(document).ready(function(){
 			storage.setItem('mod_b',mod_b);
 			storage.setItem('mod_c',mod_c);
 			storage.setItem('mod_d',mod_d);
-			window.location.href='modify.html';
 		});
 	 }
-	 //修改记录的确认按钮
+	 //修改记录的保存按钮
 	 $("#confirm_mod").click(function(){
 		 game_index = storage.getItem('game_index');
 
