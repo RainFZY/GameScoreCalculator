@@ -319,40 +319,57 @@ $('#tbody').on("click",'.left', function() {
 		// 加一个删除提示框
 		if(confirm("确定要删除该局分数吗？")){
    		var this_id = $(this).parent().parent().attr("class");
+
    		a_sum = a_sum - a_arr[this_id];
 			storage.setItem('sumA',a_sum);//主界面的总分
-   		a_arr[this_id] = 0;
-   		storage.setItem('a_'+this_id,0);
-   		$("#a_sum").html(a_sum);
+			$("#a_sum").html(a_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[1].innerHTML = 0;
+			storage.setItem('a_'+this_id,0);
+			a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
 
    		b_sum = b_sum - b_arr[this_id];
 			storage.setItem('sumB',b_sum);
-   		b_arr[this_id] = 0;
-   		storage.setItem('b_'+this_id,0);
    		$("#b_sum").html(b_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[2].innerHTML = 0;
+			storage.setItem('b_'+this_id,0);
+			b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
 
    		c_sum = c_sum - c_arr[this_id];
 			storage.setItem('sumC',c_sum);
-   		c_arr[this_id] = 0;
-   		storage.setItem('c_'+this_id,0);
    		$("#c_sum").html(c_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
+			storage.setItem('c_'+this_id,0);
+			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
    		d_sum = d_sum - d_arr[this_id];
 			storage.setItem('sumD',d_sum);
-   		d_arr[this_id] = 0;
-   		storage.setItem('d_'+this_id,0);
    		$("#d_sum").html(d_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
+			storage.setItem('d_'+this_id,0);
+			d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
 
-			game_num -= 1;
-			storage.setItem('game_num',game_num);
-			$("#game_num").html(game_num);
+			// 对局总数变更
+			// game_num -= 1;
+			// storage.setItem('game_num',game_num);
+			// $("#game_num").html(game_num);
 
-   		storage.removeItem("data");
-   		$(this).parent().parent().remove();
+   	// 	storage.removeItem("data");
+   	// 	$(this).parent().parent().remove();
    		pre_id = this_id-1;
    		if (this_id>1) {
     		$("."+pre_id+" .delete_c").show();
     	}
+
+			// this_id = parseInt(this_id)
+			// console.log(this_id+1)
+			// console.log(game_num+1);
+			// console.log($("#1").parent().attr("class"))
+			// console.log($("#"+this_id).parent().attr("class"))
+			// for (i=this_id+1;i<=game_num+1;i++){
+			// 		console.log($("#"+i).parent().attr("class"))
+			// 		$("#"+i).parent().attr("class") -= 1;
+			// 		console.log($("#"+i).parent().attr("class"))
+			// }
 		}
 	});
 
@@ -380,7 +397,9 @@ $('#tbody').on("click",'.left', function() {
 		$("."+i).click(function(){
 			game_index = $(this).attr('class');
 			storage.setItem('game_index',game_index);
-
+			// console.log(game_index);
+			// console.log(document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML);
+			// console.log(document.getElementById("tbody").getElementsByTagName("th")[game_index-1].innerHTML);
 			//mod_a = $(this).attr('class');
 			mod_a = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;
 			mod_b = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;
