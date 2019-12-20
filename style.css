@@ -137,7 +137,7 @@ th{
   border-color: #adadad;
 }
 
-#save_suc,#save_fail{
+#save_suc,#save_fail,#sum_incorrect{
   display: none;
   margin-top: 10px;
   margin-left: auto;

@@ -192,9 +192,8 @@ $(document).ready(function(){
 		var set_b = $("#set_b").val();
 		var set_c = $("#set_c").val();
 		var set_d = $("#set_d").val();
-
+		// 获取预设的单局总分
 		game_sum = storage.getItem('game_sum');
-		// console.log(game_sum);
 
 		if(set_a == "" && set_b != "" && set_c != "" && set_d != ""){
 			set_a = game_sum - set_b -set_c - set_d;
@@ -215,45 +214,55 @@ $(document).ready(function(){
 
 		// tbody部分所有数据
 		var old_data = $("#1").parent().parent().html();
-		//有数据则保存数据并显示保存成功消息
 		if (set_a != "" && set_b != "" && set_c != "" && set_d != "") {
-			storage.setItem('a_'+trows,set_a);
-    	a_arr[trows] = parseInt(storage.getItem('a_'+trows));
-    	a_sum = a_sum + a_arr[trows];
-			storage.setItem('sumA',a_sum);//主界面的总分
-    	$("#a_sum").html(a_sum);
+			set_a = parseInt(set_a);
+			set_b = parseInt(set_b);
+			set_c = parseInt(set_c);
+			set_d = parseInt(set_d);
+			if(set_a + set_b + set_c + set_d != game_sum){
+				$("#sum_incorrect").show();
+				/*设置5秒后提示消息消失*/
+				setTimeout(function(){$("#sum_incorrect").hide()},5000);
+			}
+			else{
+				storage.setItem('a_'+trows,set_a);
+	    	a_arr[trows] = parseInt(storage.getItem('a_'+trows));
+	    	a_sum = a_sum + a_arr[trows];
+				storage.setItem('sumA',a_sum);//主界面的总分
+	    	$("#a_sum").html(a_sum);
 
-    	storage.setItem('b_'+trows,set_b);
-    	b_arr[trows] = parseInt(storage.getItem('b_'+trows));
-    	b_sum = b_sum + b_arr[trows];
-			storage.setItem('sumB',b_sum);
-    	$("#b_sum").html(b_sum);
+	    	storage.setItem('b_'+trows,set_b);
+	    	b_arr[trows] = parseInt(storage.getItem('b_'+trows));
+	    	b_sum = b_sum + b_arr[trows];
+				storage.setItem('sumB',b_sum);
+	    	$("#b_sum").html(b_sum);
 
-    	storage.setItem('c_'+trows,set_c);
-    	c_arr[trows] = parseInt(storage.getItem('c_'+trows));
-    	c_sum = c_sum + c_arr[trows];
-			storage.setItem('sumC',c_sum);
-    	$("#c_sum").html(c_sum);
+	    	storage.setItem('c_'+trows,set_c);
+	    	c_arr[trows] = parseInt(storage.getItem('c_'+trows));
+	    	c_sum = c_sum + c_arr[trows];
+				storage.setItem('sumC',c_sum);
+	    	$("#c_sum").html(c_sum);
 
-    	storage.setItem('d_'+trows,set_d);
-    	d_arr[trows] = parseInt(storage.getItem('d_'+trows));
-    	d_sum = d_sum + d_arr[trows];
-			storage.setItem('sumD',d_sum);
-			$("#d_sum").html(d_sum);
-			//游戏局数
-			game_num += 1;
-			storage.setItem('game_num',game_num);
-			$("#game_num").html(game_num);
+	    	storage.setItem('d_'+trows,set_d);
+	    	d_arr[trows] = parseInt(storage.getItem('d_'+trows));
+	    	d_sum = d_sum + d_arr[trows];
+				storage.setItem('sumD',d_sum);
+				$("#d_sum").html(d_sum);
+				//游戏局数
+				game_num += 1;
+				storage.setItem('game_num',game_num);
+				$("#game_num").html(game_num);
 
-			// append，加上这行
-			var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'" class="left">第'+trows+'局</th><td class="left">'+set_a+'</td><td class="left">'+set_b+'</td><td class="left">'+set_c+'</td><td class="left">'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
-			// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
-			$("#tbody").append($this_row);
+				// append，加上这行
+				var $this_row = $('<tr class="'+trows+'"><th scope="row" id="'+trows+'" class="left">第'+trows+'局</th><td class="left">'+set_a+'</td><td class="left">'+set_b+'</td><td class="left">'+set_c+'</td><td class="left">'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+				// var $this_row = $('<tr class="'+trows+'" contentEditable = "true"><th scope="row" id="'+trows+'">第'+trows+'局</th><td>'+set_a+'</td><td>'+set_b+'</td><td>'+set_c+'</td><td>'+set_d+'</td><td><button class="delete_c"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>');
+				$("#tbody").append($this_row);
 
-			storage.setItem('data',old_data);
-			$("#save_suc").show();
-			if ($("#save_suc").is(":visible")) {
-			setTimeout(function(){$("#save_suc").hide()},5000);
+				storage.setItem('data',old_data);
+				$("#save_suc").show();
+				if ($("#save_suc").is(":visible")) {
+				setTimeout(function(){$("#save_suc").hide()},5000);
+				}
 			}
 		}
 		/*无数据则显示保存失败*/
