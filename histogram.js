@@ -50,6 +50,7 @@ histogram.prototype.draw = function () {
         }
     }
 maxnum = maxamount;
+// console.log(maxamount);
 
     //动态设置 canvas 的尺寸
    this.ctx.canvas.height = Math.ceil(maxamount / this.yInterval) * 50 + 120;    //120 is for the chart title.
@@ -89,15 +90,17 @@ maxnum = maxamount;
         this.ctx.strokeStyle = colors[i];
 
         for (var j = 0; j < dataCollection.length; j++) {
-
+            // console.log(dataCollection[j].amount);
             metaData = dataCollection[j];
-            this.ctx.moveTo(x, y - 50-1);
-            this.ctx.lineTo(x, y - 50 - 1 - (metaData.amount / vbar.interval) * 50 +5);
+            // console.log(metaData.amount);
+            this.ctx.moveTo(x, y - 50 -1);
+            this.ctx.lineTo(x, y - 50 - 1 - (metaData.amount / vbar.interval) * 50 + 1); //change here
             this.ctx.stroke();
 
             //绘制柱的高度
+            // metaData.amount += 0;
             this.ctx.font = "10px Arial";this.ctx.textAlign = "start";
-            this.ctx.fillText(metaData.amount, x - 12, y - 50 - 1 - (metaData.amount / vbar.interval) * 50);
+            this.ctx.fillText(metaData.amount, x - 5, y - 50 - 1 - (metaData.amount / vbar.interval) * 50); // change here
 
             //绘制柱的标题
             this.ctx.font = "12px Arial";

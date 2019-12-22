@@ -66,20 +66,23 @@ $(document).ready(function(){
 
 	// 首页显示最高分玩家
 	var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
+	// 将玩家总分从高到低进行排序
 	arr.sort(function(a,b){
 			return b - a
 	})
+	// console.log(arr)
+	var max_name = '';
 	if(arr[0]==a_sum1){
-		max_name = nameA;
+		max_name = max_name + nameA + ' ';
 	}
-	else if (arr[0]==b_sum1) {
-		max_name = nameB;
+	if (arr[0]==b_sum1) {
+		max_name = max_name + nameB + ' ';
 	}
-	else if (arr[0]==c_sum1) {
-		max_name = nameC;
+	if (arr[0]==c_sum1) {
+		max_name = max_name + nameC + ' ';
 	}
-	else{
-		max_name = nameD;
+	if (arr[0]==d_sum1){
+		max_name = max_name + nameD + ' ';
 	}
 	// console.log(max_name);
 	$("#max_name").val(max_name);

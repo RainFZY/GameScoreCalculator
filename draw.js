@@ -23,6 +23,18 @@ function startdraw(){
     var v = new histogram(ctx,jasonData,aver); // 调用histogram.js中的函数
     v.draw();
   }
+  else if (aver == 0) {
+    $("#myCanvas").show();
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
+  	// 将玩家总分从低到高进行排序
+  	arr.sort(function(a,b){
+  			return a-b;
+  	})
+    var v = new histogram(ctx,jasonData,(parseInt(-arr[0]/10)+1)*10); // 调用histogram.js中的函数
+    v.draw();
+  }
   else{
     $("#myCanvas").hide();
   }
