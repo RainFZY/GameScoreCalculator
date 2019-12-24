@@ -18,49 +18,47 @@
   <!-- 返回键 -->
   <div style="margin-top:30px;">
     <a href="#" onclick="javascript:history.back(-1);">
-        <div class="arrow-box nav-left ml-20 mr-10">
-              <div class="arrow"></div><div class="stick"></div>
-        </div>
+      <div class="arrow-box nav-left ml-20 mr-10">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </div>
     </a>
   </div>
 
-  <div class="col-md-1 col-xs-12">
-  <!-- h1到h6标签可定义标题，h1最大 -->
-  <h3 style="text-align: center;" margin-top=0px;>设置单局总分</h3>
+  <div class="col-md-12 col-xs-12">
+    <!-- h1到h6标签可定义标题，h1最大 -->
+    <h3 style="text-align: center;" margin-top=0px;>设置单局总分</h3>
   </div>
 
 
-<div class="col-md-2 col-xs-12 setting" style="margin-top:20px;">
-	<div class="input-group ">
-		<!-- <span> 标签被用来组合文档中的行内元素。 -->
-  		<span class="input-group-addon">输入单局总分(默认为0)</span>
-  		<input type="number" class="form-control" id="game_sum"  aria-describedby="sizing-addon2">
-	</div>
-  <div class="add-button" style="margin-top:20px;">
-    <input type="button" value="保存" id="confirm_sum" style="border:3px outset #50a8fa;"/>
-	</div>
+  <div class="col-md-12 col-xs-12 setting" style="margin-top:20px;">
+    <div class="input-group ">
+      <!-- <span> 标签被用来组合文档中的行内元素。 -->
+      <span class="input-group-addon">输入单局总分(默认为0)</span>
+      <input type="number" class="form-control" id="game_sum"  aria-describedby="sizing-addon2">
+    </div>
+    <div class="add-button" style="margin-top:20px;">
+      <input type="button" value="保存" id="confirm_sum" style="border:3px outset #50a8fa;"/>
+    </div>
 
-  <div class="alert alert-danger alert-dismissable" id="save_fail">
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	请输入非负整数！
-	</div>
+    <div class="alert alert-danger alert-dismissable" id="save_fail">
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      请输入非负整数！
+    </div>
 
-	<div class="alert alert-info alert-dismissable" id="save_suc" >
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	保存设置成功！
-	</div class="col-md-2 col-sm-12 col-xs-12">
-
-</div>
-</div>
-
-
+    <div class="alert alert-info alert-dismissable" id="save_suc" >
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      保存设置成功！
+    </div>
+  </div>
 </body>
+
 <script src="./main.js"></script>
 <script src="./quickwin.js"></script>
 </html>

@@ -62,7 +62,7 @@ th{
   padding: 6px 12px;
   margin: 12px 15px 3px 15px;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -85,7 +85,7 @@ th{
   padding: 6px 12px;
   margin: 30px 15px 3px 15px;
   font-size: 14px;
-  font-weight: normal;
+  font-weight:bold;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -149,7 +149,9 @@ th{
 
 /* 新纪录和保存数据按钮 */
 .data{
-  margin:10px 0px 10px 0px;
+  margin-top:10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .delete_c{

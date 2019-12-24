@@ -1,122 +1,113 @@
 <html>
 <head>
-  <!-- <meta> 元素可提供有关页面的元信息，比如针对搜索引擎和更新频度的描述和关键词。 -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 网页标签上的文字 -->
-  <title>我是计分器</title>
-  <!-- 链接一个外部样式表，只能存在于 head 部分 -->
-  <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./style.css">
-  <!-- script标签用于定义客户端脚本，比如 JavaScript -->
-  <script src="./jquery.min.js"></script>
-  <script src="./bootstrap/js/bootstrap.min.js"></script>
+	<!-- <meta> 元素可提供有关页面的元信息，比如针对搜索引擎和更新频度的描述和关键词。 -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 网页标签上的文字 -->
+	<title>我是计分器</title>
+	<!-- 链接一个外部样式表，只能存在于 head 部分 -->
+	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<!-- script标签用于定义客户端脚本，比如 JavaScript -->
+	<script src="./jquery.min.js"></script>
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 
 <body>
-  <!-- 返回键 -->
-  <div style="margin-top:30px;">
-    <a href="#" onclick="javascript:history.back(-1);">
-        <div class="arrow-box nav-left ml-20 mr-10">
-              <div class="arrow"></div><div class="stick"></div>
-        </div>
-    </a>
-  </div>
+  	<!-- 返回键 -->
+  	<div style="margin-top:30px;">
+		<a href="#" onclick="javascript:history.back(-1);">
+			<div class="arrow-box nav-left ml-20 mr-10">
+				<div class="arrow"></div>
+				<div class="stick"></div>
+			</div>
+		</a>
+  	</div>
 
-  <div class="col-md-1 col-xs-12">
-  <!-- h1到h6标签可定义标题，h1最大 -->
-  <h2 style="text-align: center;" margin-top=0px;>新增一局</h2>
-  </div>
+  	<div class="col-md-12 col-xs-12">
+		<!-- h1到h6标签可定义标题，h1最大 -->
+		<h2 style="text-align: center;" margin-top=0px;>新增一局</h2>
+  	</div>
 
-  <div class="table-responsive col-md-8 col-xs-12" style="margin-top:20px;">
-  	<!-- <table> 标签定义 HTML 表格 -->
-  	<table class="table table-hover table-bordered">
-  		<!-- <p> 标签定义段落。p 元素会自动在其前后创建一些空白。 -->
-  		<p class="t_title">积分表</p>
-  		<!-- <thead> 标签定义表格的表头，与 tbody 和 tfoot 元素结合起来使用 -->
-    		<thead>
-  			<!-- <tr> 标签定义 HTML 表格中的行。tr 元素包含一个或多个 th(粗)或 td(细) 元素。 -->
-          	<tr>
-              	<th class="col-md-1">玩家</th>
-              	<th class="col-md-1" id="playerA"></th>
-              	<th class="col-md-1" id="playerB"></th>
-              	<th class="col-md-1" id="playerC"></th>
-              	<th class="col-md-1" id="playerD"></th>
+  	<div class="table-responsive col-md-12 col-xs-12" style="margin-top:20px;">
+		<!-- <table> 标签定义 HTML 表格 -->
+		<table class="table table-hover table-bordered">
+			<!-- <p> 标签定义段落。p 元素会自动在其前后创建一些空白。 -->
+			<p class="t_title">积分表</p>
+			<!-- <thead> 标签定义表格的表头，与 tbody 和 tfoot 元素结合起来使用 -->
+			<thead>
+				<!-- <tr> 标签定义 HTML 表格中的行。tr 元素包含一个或多个 th(粗)或 td(细) 元素。 -->
+				<tr>
+					<th class="col-md-1">玩家</th>
+					<th class="col-md-1" id="playerA"></th>
+					<th class="col-md-1" id="playerB"></th>
+					<th class="col-md-1" id="playerC"></th>
+					<th class="col-md-1" id="playerD"></th>
+				</tr>
+			</thead>
+			<tbody id="tbody1">
+				<tr id="first_tr">
+					<th scope="row">总分</th>
+					<td id="a_sum">0</td>
+					<td id="b_sum">0</td>
+					<td id="c_sum">0</td>
+					<td id="d_sum">0</td>
+				</tr>
+				<!-- add页面的表格body隐藏 -->
+				<tbody id="tbody" style="display:none">
+				</tbody>
+			</tbody>
+		</table>
+  	</div>
 
-            	</tr>
-          </thead>
-          <tbody id="tbody1">
-  			<tr id="first_tr">
-              	<th scope="row">总分</th>
-              	<td id="a_sum">0</td>
-              	<td id="b_sum">0</td>
-              	<td id="c_sum">0</td>
-              	<td id="d_sum">0</td>
+	<div class="col-md-12 col-xs-12 setting" style="margin-top:15px;">
+		<div class="input-group ">
+			<!-- <span> 标签被用来组合文档中的行内元素。 -->
+			<span class="input-group-addon" id="sizing-addon2" >设置玩家A的分数</span>
+			<input type="number" class="form-control" id="set_a" value="" aria-describedby="sizing-addon2">
+		</div>
+		<div class="input-group ">
+			<span class="input-group-addon" id="sizing-addon2">设置玩家B的分数</span>
+			<input type="number" class="form-control" id="set_b" value="" aria-describedby="sizing-addon2">
+		</div>
+		<div class="input-group ">
+			<span class="input-group-addon" id="sizing-addon2">设置玩家C的分数</span>
+			<input type="number" class="form-control" id="set_c" value="" aria-describedby="sizing-addon2">
+		</div>
+		<div class="input-group ">
+			<span class="input-group-addon" id="sizing-addon2">设置玩家D的分数</span>
+			<input type="number" class="form-control" id="set_d" value="" aria-describedby="sizing-addon2">
+		</div>
+		<div class="add-button" style="margin-top:20px;">
+			<input type="button" value="预设" id="set_sum"style="border:3px outset #50a8fa;"  />
+			<input type="button" value="保存" id="add_row"style="border:3px outset #50a8fa;"  />
+		</div>
 
-            	</tr>
-              <!-- add页面的表格body隐藏 -->
-            	<tbody id="tbody" style="display:none">
-  			      </tbody>
-  		</tbody>
-  	</table>
+		<div class="alert alert-danger alert-dismissable" id="save_fail">
+			<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">
+			&times;
+			</button>
+			请输至少输入三个分数！
+		</div>
 
-  </div>
+		<div class="alert alert-info alert-dismissable" id="save_suc" >
+			<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">
+			&times;
+			</button>
+			保存数据成功！
+		</div>
 
-
-
-<div class="col-md-2 col-xs-12 setting" style="margin-top:15px;">
-
-	<div class="input-group ">
-		<!-- <span> 标签被用来组合文档中的行内元素。 -->
-  		<span class="input-group-addon" id="sizing-addon2" >设置玩家A的分数</span>
-  		<input type="number" class="form-control" id="set_a" value="" aria-describedby="sizing-addon2">
+		<div class="alert alert-danger alert-dismissable" id="sum_incorrect">
+			<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">
+			&times;
+			</button>
+			输入分数之和不符合预设值！
+		</div>
 	</div>
-	<div class="input-group ">
- 		 <span class="input-group-addon" id="sizing-addon2">设置玩家B的分数</span>
- 		 <input type="number" class="form-control" id="set_b" value="" aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group ">
-  		<span class="input-group-addon" id="sizing-addon2">设置玩家C的分数</span>
-  		<input type="number" class="form-control" id="set_c" value="" aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group ">
- 		 <span class="input-group-addon" id="sizing-addon2">设置玩家D的分数</span>
- 		 <input type="number" class="form-control" id="set_d" value="" aria-describedby="sizing-addon2">
-	</div>
-  <div class="add-button" style="margin-top:20px;">
-    <input type="button" value="预设" id="set_sum"style="border:3px outset #50a8fa;"  />
-    <input type="button" value="保存" id="add_row"style="border:3px outset #50a8fa;"  />
-	</div>
-
-  <div class="alert alert-danger alert-dismissable" id="save_fail">
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	请输至少输入三个分数！
-	</div>
-
-	<div class="alert alert-info alert-dismissable" id="save_suc" >
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	保存数据成功！
-	</div class="col-md-2 col-sm-12 col-xs-12">
-
-  <div class="alert alert-danger alert-dismissable" id="sum_incorrect">
-    <button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-    </button>
-    输入分数之和不符合预设值！
-  </div>
-
-
-
-
-</div>
 </div>
 
 

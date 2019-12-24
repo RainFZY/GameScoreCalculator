@@ -18,73 +18,67 @@
   <!-- 返回键 -->
   <div style="margin-top:30px;">
     <a href="#" onclick="javascript:history.back(-1);">
-        <div class="arrow-box nav-left ml-20 mr-10">
-              <div class="arrow"></div><div class="stick"></div>
-        </div>
+      <div class="arrow-box nav-left ml-20 mr-10">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </div>
     </a>
   </div>
 
-  <div class="col-md-1 col-xs-12">
-  <!-- h1到h6标签可定义标题，h1最大 -->
-  <h2 style="text-align: center;" margin-top=0px;>修改记录</h2>
-  <h3 style="text-align: center;" margin-top=20px; id="game_index">局数：</h3>
+  <div class="col-md-12 col-xs-12">
+    <!-- h1到h6标签可定义标题，h1最大 -->
+    <h2 style="text-align: center;" margin-top=0px;>修改记录</h2>
+    <h3 style="text-align: center;" margin-top=20px; id="game_index">局数：</h3>
   </div>
 
-
-  <div class="table-responsive col-md-8 col-xs-12" style="margin-top:15px;">
+  <div class="table-responsive col-md-12 col-xs-12" style="margin-top:15px;">
     <table class="table table-hover table-bordered">
-        <thead>
-        </thead>
-        <tbody id="tbody" style="display:none">
-        </tbody>
+      <thead>
+      </thead>
+      <tbody id="tbody" style="display:none">
+      </tbody>
     </table>
   </div>
 
 
-<div class="col-md-2 col-xs-12 setting" style="margin-top:15px;">
-	<div class="input-group ">
-		<!-- <span> 标签被用来组合文档中的行内元素。 -->
-  		<span class="input-group-addon" id="text1" ></span>
-  		<input type="number" class="form-control" id="mod_a"  aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group ">
- 		 <span class="input-group-addon" id="text2"></span>
- 		 <input type="number" class="form-control" id="mod_b" value="0" aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group ">
-  		<span class="input-group-addon" id="text3"></span>
-  		<input type="number" class="form-control" id="mod_c" value="0" aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group ">
- 		 <span class="input-group-addon" id="text4"></span>
- 		 <input type="number" class="form-control" id="mod_d" value="0" aria-describedby="sizing-addon2">
-	</div>
-  <div class="add-button" style="margin-top:20px;">
-    <input type="button" value="保存" id="confirm_mod" style="border:3px outset #50a8fa;"/>
-	</div>
+  <div class="col-md-12 col-xs-12 setting" style="margin-top:15px;">
+    <div class="input-group ">
+      <!-- <span> 标签被用来组合文档中的行内元素。 -->
+      <span class="input-group-addon" id="text1" ></span>
+      <input type="number" class="form-control" id="mod_a"  aria-describedby="sizing-addon2">
+    </div>
+    <div class="input-group ">
+      <span class="input-group-addon" id="text2"></span>
+      <input type="number" class="form-control" id="mod_b" value="0" aria-describedby="sizing-addon2">
+    </div>
+    <div class="input-group ">
+      <span class="input-group-addon" id="text3"></span>
+      <input type="number" class="form-control" id="mod_c" value="0" aria-describedby="sizing-addon2">
+    </div>
+    <div class="input-group ">
+      <span class="input-group-addon" id="text4"></span>
+      <input type="number" class="form-control" id="mod_d" value="0" aria-describedby="sizing-addon2">
+    </div>
+    <div class="add-button" style="margin-top:20px;">
+      <input type="button" value="保存" id="confirm_mod" style="border:3px outset #50a8fa;"/>
+    </div>
 
-  <div class="alert alert-danger alert-dismissable" id="save_fail">
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	请输全分数再保存！
-	</div>
+    <div class="alert alert-danger alert-dismissable" id="save_fail">
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      请输全分数再保存！
+    </div>
 
-	<div class="alert alert-info alert-dismissable" id="save_suc" >
-   	<button type="button" class="close" data-dismiss="alert"
-      aria-hidden="true">
-      &times;
-   	</button>
-   	保存数据成功！
-	</div class="col-md-2 col-sm-12 col-xs-12">
-
-
-
-
-</div>
-</div>
-
+    <div class="alert alert-info alert-dismissable" id="save_suc" >
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      保存数据成功！
+    </div>
+  </div>
 
 </body>
 <script src="./main.js"></script>

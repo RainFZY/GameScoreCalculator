@@ -310,28 +310,28 @@ $(document).ready(function(){
    		a_sum = a_sum - a_arr[this_id];
 			storage.setItem('sumA',a_sum);//主界面的总分
 			$("#a_sum").html(a_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[1].innerHTML = 0;
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
 			storage.setItem('a_'+this_id,0);
 			a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
 
    		b_sum = b_sum - b_arr[this_id];
 			storage.setItem('sumB',b_sum);
    		$("#b_sum").html(b_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[2].innerHTML = 0;
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
 			storage.setItem('b_'+this_id,0);
 			b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
 
    		c_sum = c_sum - c_arr[this_id];
 			storage.setItem('sumC',c_sum);
    		$("#c_sum").html(c_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[6].innerHTML = 0;
 			storage.setItem('c_'+this_id,0);
 			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
    		d_sum = d_sum - d_arr[this_id];
 			storage.setItem('sumD',d_sum);
    		$("#d_sum").html(d_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
 			storage.setItem('d_'+this_id,0);
 			d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
 
@@ -370,10 +370,13 @@ $(document).ready(function(){
 		$("."+i).click(function(){
 			game_index = $(this).attr('class');
 			storage.setItem('game_index',game_index);
-			mod_a = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;
-			mod_b = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;
-			mod_c = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;
-			mod_d = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;
+			// console.log(game_index);
+			mod_a = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;
+			mod_b = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;
+			mod_c = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[6].innerHTML;
+			mod_d = document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[7].innerHTML;
+			// console.log(mod_a);
+			// console.log(mod_c);
 			//mod_a = this.parentNode.cells[1].childNodes[0].value;
 			//mod_a = document.getElementById("tbody").rows(1).cells(1).innerText;
 			storage.setItem('mod_a',mod_a);
@@ -392,32 +395,32 @@ $(document).ready(function(){
 		 var mod_d = $("#mod_d").val();//读取输入框的分数
 		 // 保证输入不为空
 		 if(mod_a!="" && mod_b!="" && mod_c!="" && mod_d!=""){
-			 a_sum = a_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML;//总分先减去原单元格的分数
-			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[1].innerHTML = mod_a;
+			 a_sum = a_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML = mod_a;
 			 storage.setItem('a_'+game_index,mod_a);
 			 a_arr[game_index] = parseInt(storage.getItem('a_'+game_index));
 			 a_sum = a_sum + a_arr[game_index];//再加上新的修改后分数
 			 storage.setItem('sumA',a_sum);//主界面的总分
 			 $("#a_sum").html(a_sum);
 
-			 b_sum = b_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML;//总分先减去原单元格的分数
-			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[2].innerHTML = mod_b;
+			 b_sum = b_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML = mod_b;
 			 storage.setItem('b_'+game_index,mod_b);
 			 b_arr[game_index] = parseInt(storage.getItem('b_'+game_index));
 			 b_sum = b_sum + b_arr[game_index];//再加上新的修改后分数
 			 storage.setItem('sumB',b_sum);//主界面的总分
 			 $("#b_sum").html(b_sum);
 
-			 c_sum = c_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML;//总分先减去原单元格的分数
-			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[3].innerHTML = mod_c;
+			 c_sum = c_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[6].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[6].innerHTML = mod_c;
 			 storage.setItem('c_'+game_index,mod_c);
 			 c_arr[game_index] = parseInt(storage.getItem('c_'+game_index));
 			 c_sum = c_sum + c_arr[game_index];//再加上新的修改后分数
 			 storage.setItem('sumC',c_sum);//主界面的总分
 			 $("#c_sum").html(c_sum);
 
-			 d_sum = d_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;//总分先减去原单元格的分数
-			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML = mod_d;
+			 d_sum = d_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[7].innerHTML;//总分先减去原单元格的分数
+			 document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[7].innerHTML = mod_d;
 			 storage.setItem('d_'+game_index,mod_d);
 			 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
 			 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
@@ -451,5 +454,5 @@ $(document).ready(function(){
 		aver = all/4;
 	};
 	setInterval(sumaver,100);
-	
+
 });
