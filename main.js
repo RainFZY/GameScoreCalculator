@@ -1,7 +1,7 @@
 var storage = window.localStorage;
 
 $(document).ready(function(){
-
+	
 	$("#tbody").append(storage.data);
 	// 设置玩家界面的玩家id
 	$("#playerA").append(storage.aKey);
@@ -22,15 +22,8 @@ $(document).ready(function(){
 	$('#set_playerC').val(nameC);
 	nameD = storage.getItem('dKey');
 	$('#set_playerD').val(nameD);
-	// 主界面的总分
-	$("#a_sum1").append(storage.sumA);
-	$("#b_sum1").append(storage.sumB);
-	$("#c_sum1").append(storage.sumC);
-	$("#d_sum1").append(storage.sumD);
-	// 主界面的总共进行局数
-	$("#game_num").append(storage.game_num);
-	// 预设界面的
-	$("#game_sum").append(storage.game_sum);
+
+
 	//修改记录界面输入框同步当局分数
 	mod_a = storage.getItem('mod_a');
 	$("#mod_a").val(mod_a);
@@ -45,37 +38,106 @@ $(document).ready(function(){
 	var b_arr = new Array();
 	var c_arr = new Array();
 	var d_arr = new Array();
-	// 玩家总得分
-	a_sum = 0;
-	b_sum = 0;
-	c_sum = 0;
-	d_sum = 0;
+	// storage.removeItem('sumA');
+	// console.log(a_sum);
+	// console.log(storage.getItem('sumA'));
+	if(storage.getItem('sumA')==null){
+		a_sum = 0;
+	}
+	else{
+		a_sum = parseInt(storage.getItem('sumA'));
+	}
+
+	if(storage.getItem('sumB')==null){
+		b_sum = 0;
+	}
+	else{
+		b_sum = parseInt(storage.getItem('sumB'));
+	}
+
+	if(storage.getItem('sumC')==null){
+		c_sum = 0;
+	}
+	else{
+		c_sum = parseInt(storage.getItem('sumC'));
+	}
+
+	if(storage.getItem('sumD')==null){
+		d_sum = 0;
+	}
+	else{
+		d_sum = parseInt(storage.getItem('sumD'));
+	}
+	$("#a_sum").append(storage.sumA);
+	$("#b_sum").append(storage.sumB);
+	$("#c_sum").append(storage.sumC);
+	$("#d_sum").append(storage.sumD);
+
+	/*显示总分*/
+	// html()意思是显示其html内容
+	$("#a_sum").html(a_sum);
+	$("#b_sum").html(b_sum);
+	$("#c_sum").html(c_sum);
+	$("#d_sum").html(d_sum);
+	// a_sum = 0;
+	// b_sum = 0;
+	// c_sum = 0;
+	// d_sum = 0;
+	
+	// // 主界面的总分
+	// a_sum = parseInt(storage.getItem('sumA'));
+	// b_sum = parseInt(storage.getItem('sumB'));
+	// c_sum = parseInt(storage.getItem('sumC'));
+	// d_sum = parseInt(storage.getItem('sumD'));
+
 	a_arr.length = 50;
-	// 主界面的总分
-	a_sum1 = parseInt(storage.getItem('sumA'));
-	b_sum1 = parseInt(storage.getItem('sumB'));
-	c_sum1 = parseInt(storage.getItem('sumC'));
-	d_sum1 = parseInt(storage.getItem('sumD'));
-	game_num = parseInt(storage.getItem('game_num'));
+
+
+	if(storage.getItem('game_num')==null){
+		game_num = 0;
+		storage.setItem('game_num',0);
+	}
+	else{
+		game_num = parseInt(storage.getItem('game_num'));
+	}
+
+	if(storage.getItem('game_sum')==null){
+		game_sum = 0;
+		storage.setItem('game_sum',0);
+	}
+	else{
+		game_sum = parseInt(storage.getItem('game_sum'));
+	}
+	// 主界面的总共进行局数
+	$("#game_num").append(storage.game_num);
+	// 预设界面的
+	$("#game_sum").append(storage.game_sum);
+
+	$("game_num").html(game_num);
+
+	// setSum界面输入框同步显示单局总分
+	game_sum = storage.getItem('game_sum');
+	$('#game_sum').val(game_sum);
+	
 	// 首页显示最高分玩家
-	var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
+	var arr = [a_sum,b_sum,c_sum,d_sum]
 	// 将玩家总分从高到低进行排序
 	arr.sort(function(a,b){
-			return b - a
+		return b - a
 	})
 	// console.log(arr)
 	// 首页目前最高得分玩家
 	var max_name = '';
-	if(arr[0]==a_sum1){
+	if(arr[0]==a_sum){
 		max_name = max_name + nameA + ' ';
 	}
-	if (arr[0]==b_sum1) {
+	if (arr[0]==b_sum) {
 		max_name = max_name + nameB + ' ';
 	}
-	if (arr[0]==c_sum1) {
+	if (arr[0]==c_sum) {
 		max_name = max_name + nameC + ' ';
 	}
-	if (arr[0]==d_sum1){
+	if (arr[0]==d_sum){
 		max_name = max_name + nameD + ' ';
 	}
 	// console.log(max_name);
@@ -94,22 +156,6 @@ $(document).ready(function(){
 		c_arr[i]= parseInt(storage.getItem('c_'+i));
 		d_arr[i]= parseInt(storage.getItem('d_'+i));
 	}
-	a_sum = parseInt(storage.getItem('sumA'));
-	b_sum = parseInt(storage.getItem('sumB'));
-	c_sum = parseInt(storage.getItem('sumC'));
-	d_sum = parseInt(storage.getItem('sumD'));
-
-	/*显示总分*/
-	// html()意思是显示其html内容
-	$("#a_sum").html(a_sum);
-	$("#b_sum").html(b_sum);
-	$("#c_sum").html(c_sum);
-	$("#d_sum").html(d_sum);
-	$("game_num").html(game_num);
-
-	// setSum界面输入框同步显示单局总分
-	game_sum = storage.getItem('game_sum');
-	$('#game_sum').val(game_sum);
 
 
 	/*删除除第一行外的所有行*/
@@ -206,26 +252,26 @@ $(document).ready(function(){
 			// 符合保存条件的情况
 			else{
 				storage.setItem('a_'+trows,set_a);
-	    	a_arr[trows] = parseInt(storage.getItem('a_'+trows));
-	    	a_sum = a_sum + a_arr[trows];
+				a_arr[trows] = parseInt(storage.getItem('a_'+trows));
+				a_sum = a_sum + a_arr[trows];
 				storage.setItem('sumA',a_sum);//主界面的总分
-	    	$("#a_sum").html(a_sum);
+				$("#a_sum").html(a_sum);
 
-	    	storage.setItem('b_'+trows,set_b);
-	    	b_arr[trows] = parseInt(storage.getItem('b_'+trows));
-	    	b_sum = b_sum + b_arr[trows];
+				storage.setItem('b_'+trows,set_b);
+				b_arr[trows] = parseInt(storage.getItem('b_'+trows));
+				b_sum = b_sum + b_arr[trows];
 				storage.setItem('sumB',b_sum);
-	    	$("#b_sum").html(b_sum);
+				$("#b_sum").html(b_sum);
 
-	    	storage.setItem('c_'+trows,set_c);
-	    	c_arr[trows] = parseInt(storage.getItem('c_'+trows));
-	    	c_sum = c_sum + c_arr[trows];
+				storage.setItem('c_'+trows,set_c);
+				c_arr[trows] = parseInt(storage.getItem('c_'+trows));
+				c_sum = c_sum + c_arr[trows];
 				storage.setItem('sumC',c_sum);
-	    	$("#c_sum").html(c_sum);
+				$("#c_sum").html(c_sum);
 
-	    	storage.setItem('d_'+trows,set_d);
-	    	d_arr[trows] = parseInt(storage.getItem('d_'+trows));
-	    	d_sum = d_sum + d_arr[trows];
+				storage.setItem('d_'+trows,set_d);
+				d_arr[trows] = parseInt(storage.getItem('d_'+trows));
+				d_sum = d_sum + d_arr[trows];
 				storage.setItem('sumD',d_sum);
 				$("#d_sum").html(d_sum);
 				//游戏局数
@@ -308,32 +354,32 @@ $(document).ready(function(){
    		var this_id = $(this).parent().parent().attr("class");
 
    		a_sum = a_sum - a_arr[this_id];
-			storage.setItem('sumA',a_sum);//主界面的总分
-			$("#a_sum").html(a_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
-			storage.setItem('a_'+this_id,0);
-			a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
+		storage.setItem('sumA',a_sum);//主界面的总分
+		$("#a_sum").html(a_sum);
+		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
+		storage.setItem('a_'+this_id,0);
+		a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
 
    		b_sum = b_sum - b_arr[this_id];
-			storage.setItem('sumB',b_sum);
+		storage.setItem('sumB',b_sum);
    		$("#b_sum").html(b_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
-			storage.setItem('b_'+this_id,0);
-			b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
+		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
+		storage.setItem('b_'+this_id,0);
+		b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
 
    		c_sum = c_sum - c_arr[this_id];
-			storage.setItem('sumC',c_sum);
+		storage.setItem('sumC',c_sum);
    		$("#c_sum").html(c_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[6].innerHTML = 0;
-			storage.setItem('c_'+this_id,0);
-			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
+		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[6].innerHTML = 0;
+		storage.setItem('c_'+this_id,0);
+		c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
    		d_sum = d_sum - d_arr[this_id];
-			storage.setItem('sumD',d_sum);
+		storage.setItem('sumD',d_sum);
    		$("#d_sum").html(d_sum);
-			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
-			storage.setItem('d_'+this_id,0);
-			d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
+		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
+		storage.setItem('d_'+this_id,0);
+		d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
 
    		pre_id = this_id-1;
    		if (this_id>1) {

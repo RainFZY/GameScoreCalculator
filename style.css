@@ -33,8 +33,8 @@ th{
 #playerA,#playerB,#playerC,#playerD,#qingling{
   background-color:rgba(198, 250, 221, 0.747);
 }
-#a_sum1,#a_sum,#b_sum1,#b_sum,
-#c_sum1,#c_sum,#d_sum1,#d_sum{
+
+#a_sum,#b_sum,#c_sum,#d_sum{
   background-color:rgba(82, 206, 255, 0.26);
 }
 

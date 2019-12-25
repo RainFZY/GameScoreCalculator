@@ -27,7 +27,7 @@ function startdraw(){
     $("#myCanvas").show();
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    var arr = [a_sum1,b_sum1,c_sum1,d_sum1]
+    var arr = [a_sum,b_sum,c_sum,d_sum]
   	// 将玩家总分从低到高进行排序
   	arr.sort(function(a,b){
   			return a-b;
