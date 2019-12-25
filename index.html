@@ -19,7 +19,7 @@
 	<!-- <div>标签可以定义文档中的分区或节，把文档分割为独立的、不同的部分。 -->
 	<!-- class 用于元素组（类似的元素，或者可以理解为某一类元素） -->
 	<div class="container-fluid">
-	<!-- col-md-11来自bootstrap，值越大越宽 -->
+		<!-- col-md-11来自bootstrap，值越大越宽 -->
 		<div class="col-md-12 col-xs-0">
 			<!-- h1到h6标签可定义标题，h1最大 -->
 			<h1 style="text-align: center;margin-top:80px;">游戏计分器</h1>
@@ -35,20 +35,19 @@
 					<thead>
 						<!-- <tr> 标签定义 HTML 表格中的行。tr 元素包含一个或多个 th(粗)或 td(细) 元素。 -->
 						<tr>
-							<th class="col-md-1">玩家</th>
+							<th class="col-md-1" id="wanjia">玩家</th>
 							<th class="col-md-1" id="playerA"></th>
 							<th class="col-md-1" id="playerB"></th>
 							<th class="col-md-1" id="playerC"></th>
 							<th class="col-md-1" id="playerD"></th>
-
 						</tr>
 					</thead>
 						<tr id="first_tr">
-							<th scope="row">总分</th>
-							<td id="a_sum1"></td>
-							<td id="b_sum1"></td>
-							<td id="c_sum1"></td>
-							<td id="d_sum1"></td>
+							<th scope="row" id="zongfen">总分</th>
+							<th id="a_sum1"></th>
+							<th id="b_sum1"></th>
+							<th id="c_sum1"></th>
+							<th id="d_sum1"></th>
 						</tr>
 				</table>
 			</div>
@@ -59,12 +58,12 @@
 				<h4 style="text-align: center; margin-top:30px;" id="max_name">目前得分最高：</h4>
 			</div>
 
-			<div class="col-md-12 col-xs-12 setting" style="margin-top:40px;">
+			<div class="col-md-12 col-xs-12 setting">
 				<div class="data">
-					<!-- 跳转到新增一局界面 -->
-						<input type="button" value="设置玩家" id="set_player" style="border:3px outset #50a8fa;"/>
-						<input type="button" value="新增纪录" id="add_data"style="border:3px outset #50a8fa;"  />
-						<input type="button" value="查看历史" id="view_history" style="border:3px outset #50a8fa;"/>
+					<!-- 跳转到新增一局界面  -->
+					<input type="button" value="设置玩家" id="set_player" style="border:3px outset #50a8fa;"/>
+					<input type="button" value="新增纪录" id="add_data" style="border:3px outset #50a8fa;"  />
+					<input type="button" value="查看历史" id="view_history" style="border:3px outset #50a8fa;"/>
 				</div>
 			</div>
 		</div>

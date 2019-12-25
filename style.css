@@ -1,12 +1,12 @@
 .t_title{
   text-align: center;
-  margin: 5px 0 0 0;
+  margin: 0px 0 0 0;
   border-top-left-radius: 8px;
   border-top-right-radius:  8px;
   color: #fff;
   font-family: "微软雅黑";
-  font-size: 15px;
-  background-color: #3c78d8;
+  font-size: 20px;
+  background-color: #5897fc;
 }
 /*
 @media screen and (min-width:769px){
@@ -24,33 +24,43 @@ td,
 th{
   text-align: center;
 }
-#first_tr{
-
-  background-color:#ccc;
-  font-weight: bold;
+#wanjia{
+  background-color:rgba(255, 240, 191);
 }
+#zongfen{
+  background-color:rgba(255, 187, 187, 0.5);
+}
+#playerA,#playerB,#playerC,#playerD,#qingling{
+  background-color:rgba(198, 250, 221, 0.747);
+}
+#a_sum1,#a_sum,#b_sum1,#b_sum,
+#c_sum1,#c_sum,#d_sum1,#d_sum{
+  background-color:rgba(82, 206, 255, 0.26);
+}
+
 /* 清除数据栏下的第一个框框 */
 #delete_all{
   /* 叉叉的颜色 */
   color: rgb(250, 8, 8);
   /* 框框背景颜色 */
-  background-color: #fff;
+  background-color: rgba(82, 206, 255, 0.26);
 }
-
-
 
 .setting{
   margin: 5px 0 0 0;
-
 }
-
 
 #set_a,#set_b,#set_c,#set_d,
 #mod_a,#mod_b,#mod_c,#mod_d,
-#sizing-addon2,#game_sum{
+#sizing-addon2,#game_sum,
+#text1,#text2,#text3,#text4,
+.input-group-addon{
   text-align: center;
   border:3px inset #50a8fa;
   margin: 0px 0px 0px 0px;
+}
+#set_playerA,#set_playerB,#set_playerC,#set_playerD{
+  border:3px inset #50a8fa;
 }
 
 
@@ -80,7 +90,6 @@ th{
 /*玩家设置界面的按钮*/
 #add_player,#save_player
 {
-
   display: inline-block;
   padding: 6px 12px;
   margin: 30px 15px 3px 15px;
@@ -103,10 +112,9 @@ th{
 
 /*首页的按钮*/
 #set_player,#add_data,#view_history{
-  float: left;
   display: inline-block;
   padding: 6px 12px;
-  margin: 0px 0px 10px 15px;
+  margin: 0px 5px 0px 5px;
   font-size: 14px;
   font-weight:bold;
   line-height: 2;
@@ -149,9 +157,10 @@ th{
 
 /* 新纪录和保存数据按钮 */
 .data{
-  margin-top:10px;
+  margin-top:40px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 .delete_c{

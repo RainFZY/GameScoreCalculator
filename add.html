@@ -39,7 +39,7 @@
 			<thead>
 				<!-- <tr> 标签定义 HTML 表格中的行。tr 元素包含一个或多个 th(粗)或 td(细) 元素。 -->
 				<tr>
-					<th class="col-md-1">玩家</th>
+					<th class="col-md-1" id="wanjia">玩家</th>
 					<th class="col-md-1" id="playerA"></th>
 					<th class="col-md-1" id="playerB"></th>
 					<th class="col-md-1" id="playerC"></th>
@@ -48,7 +48,7 @@
 			</thead>
 			<tbody id="tbody1">
 				<tr id="first_tr">
-					<th scope="row">总分</th>
+					<th scope="row" id="zongfen">总分</th>
 					<td id="a_sum">0</td>
 					<td id="b_sum">0</td>
 					<td id="c_sum">0</td>
@@ -80,8 +80,8 @@
 			<input type="number" class="form-control" id="set_d" value="" aria-describedby="sizing-addon2">
 		</div>
 		<div class="add-button" style="margin-top:20px;">
-			<input type="button" value="预设" id="set_sum"style="border:3px outset #50a8fa;"  />
-			<input type="button" value="保存" id="add_row"style="border:3px outset #50a8fa;"  />
+			<input type="button" value="预设" id="set_sum" style="border:3px outset #50a8fa;"  />
+			<input type="button" value="保存" id="add_row" style="border:3px outset #50a8fa;"  />
 		</div>
 
 		<div class="alert alert-danger alert-dismissable" id="save_fail">
