@@ -14,14 +14,37 @@ $(document).ready(function(){
 	$("#text3").append(storage.modify_c);
 	$("#text4").append(storage.modify_d);
 	//玩家设置界面的输入框同步显示玩家id
-	nameA = storage.getItem('aKey');
-	$('#set_playerA').val(nameA);
-	nameB = storage.getItem('bKey');
-	$('#set_playerB').val(nameB);
-	nameC = storage.getItem('cKey');
-	$('#set_playerC').val(nameC);
-	nameD = storage.getItem('dKey');
-	$('#set_playerD').val(nameD);
+	if(storage.getItem('aKey')==null){
+		nameA = '';
+	}
+	else{
+		nameA = storage.getItem('aKey');
+		$('#set_playerA').val(nameA);
+	}
+
+	if(storage.getItem('bKey')==null){
+		nameB = '';
+	}
+	else{
+		nameB = storage.getItem('bKey');
+		$('#set_playerB').val(nameB);
+	}
+
+	if(storage.getItem('cKey')==null){
+		nameC = '';
+	}
+	else{
+		nameC = storage.getItem('cKey');
+		$('#set_playerC').val(nameC);
+	}
+
+	if(storage.getItem('dKey')==null){
+		nameD = '';
+	}
+	else{
+		nameD = storage.getItem('dKey');
+		$('#set_playerD').val(nameD);
+	}
 
 
 	//修改记录界面输入框同步当局分数

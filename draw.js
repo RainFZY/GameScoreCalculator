@@ -15,28 +15,30 @@ function startdraw(){
     { "title": ""+nameB+"", "amount": ""+b_sum+"" }, { "title": ""+nameC+"", "amount": ""+c_sum+"" },
     { "title": ""+nameD+"", "amount": ""+d_sum+"" }] }]
   };
-  // 四个玩家分数和不为0时显示直方图，否则不显示
-  if (aver > 0) {
+
+  var arr = [a_sum,b_sum,c_sum,d_sum]
+  	// 将玩家总分从低到高进行排序
+  	arr.sort(function(a,b){
+  			return a-b;
+    })
+  
+  if (-arr[0]>=arr[1] && -arr[0]>=arr[2] && -arr[0]>=arr[3]) {
+    $("#myCanvas").show();
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var v = new histogram(ctx,jasonData,(parseInt(-arr[0]/10)+1)*10); // 调用histogram.js中的函数
+    v.draw();
+  }
+  else{
     $("#myCanvas").show();
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     var v = new histogram(ctx,jasonData,aver); // 调用histogram.js中的函数
     v.draw();
   }
-  else if (aver == 0) {
-    $("#myCanvas").show();
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    var arr = [a_sum,b_sum,c_sum,d_sum]
-  	// 将玩家总分从低到高进行排序
-  	arr.sort(function(a,b){
-  			return a-b;
-  	})
-    var v = new histogram(ctx,jasonData,(parseInt(-arr[0]/10)+1)*10); // 调用histogram.js中的函数
-    v.draw();
-  }
-  else{
-    $("#myCanvas").hide();
-  }
+
+  // else{
+  //   $("#myCanvas").hide();
+  // }
 };
 setInterval(startdraw,100);
