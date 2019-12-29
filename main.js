@@ -1,7 +1,7 @@
 var storage = window.localStorage;
 
 $(document).ready(function(){
-	
+
 	$("#tbody").append(storage.data);
 	// 设置玩家界面的玩家id
 	$("#playerA").append(storage.aKey);
@@ -14,6 +14,7 @@ $(document).ready(function(){
 	$("#text3").append(storage.modify_c);
 	$("#text4").append(storage.modify_d);
 	//玩家设置界面的输入框同步显示玩家id
+	// 若没有任何记录，初始化
 	if(storage.getItem('aKey')==null){
 		nameA = '';
 	}
@@ -106,12 +107,7 @@ $(document).ready(function(){
 	// b_sum = 0;
 	// c_sum = 0;
 	// d_sum = 0;
-	
-	// // 主界面的总分
-	// a_sum = parseInt(storage.getItem('sumA'));
-	// b_sum = parseInt(storage.getItem('sumB'));
-	// c_sum = parseInt(storage.getItem('sumC'));
-	// d_sum = parseInt(storage.getItem('sumD'));
+
 
 	a_arr.length = 50;
 
@@ -141,7 +137,7 @@ $(document).ready(function(){
 	// setSum界面输入框同步显示单局总分
 	game_sum = storage.getItem('game_sum');
 	$('#game_sum').val(game_sum);
-	
+
 	// 首页显示最高分玩家
 	var arr = [a_sum,b_sum,c_sum,d_sum]
 	// 将玩家总分从高到低进行排序
@@ -181,7 +177,7 @@ $(document).ready(function(){
 	}
 
 
-	/*删除除第一行外的所有行*/
+	// 删除所有记录按钮
 	$("#delete_all").click(function(){
 		// 加一个删除提示框
 		if(confirm("确定要删除所有记录吗？")){
@@ -204,17 +200,17 @@ $(document).ready(function(){
 			$("tbody  tr:not(:first)").remove();
 
 			storage.removeItem("data");
-			storage.setItem('sumA',a_sum);//主界面的总分
-			storage.setItem('sumB',b_sum);//主界面的总分
-			storage.setItem('sumC',c_sum);//主界面的总分
-			storage.setItem('sumD',d_sum);//主界面的总分
+			storage.setItem('sumA',a_sum);
+			storage.setItem('sumB',b_sum);
+			storage.setItem('sumC',c_sum);
+			storage.setItem('sumD',d_sum);
 			storage.setItem('game_num',game_num);
 			// return false;
 		}
 	});
 
 
-	/*设置单局总分的保存按钮*/
+	// 设置单局总分的保存按钮
 	$("#confirm_sum").click(function(){
 		var game_sum = $("#game_sum").val();
 		// 成功保存条件
@@ -233,7 +229,7 @@ $(document).ready(function(){
 		}
 	});
 
-	/*新增一局的保存按钮*/
+	// 新增一局的保存按钮
 	$("#add_row").click(function(){
 		var trows = $("#tbody tr").length + 1;
 		var set_a = $("#set_a").val();
@@ -277,7 +273,7 @@ $(document).ready(function(){
 				storage.setItem('a_'+trows,set_a);
 				a_arr[trows] = parseInt(storage.getItem('a_'+trows));
 				a_sum = a_sum + a_arr[trows];
-				storage.setItem('sumA',a_sum);//主界面的总分
+				storage.setItem('sumA',a_sum);
 				$("#a_sum").html(a_sum);
 
 				storage.setItem('b_'+trows,set_b);
@@ -374,40 +370,40 @@ $(document).ready(function(){
 	$('#tbody').on("click",'.delete_c', function() {
 		// 加一个删除提示框
 		if(confirm("确定要删除该局分数吗？")){
-   		var this_id = $(this).parent().parent().attr("class");
+			var this_id = $(this).parent().parent().attr("class");
 
-   		a_sum = a_sum - a_arr[this_id];
-		storage.setItem('sumA',a_sum);//主界面的总分
-		$("#a_sum").html(a_sum);
-		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
-		storage.setItem('a_'+this_id,0);
-		a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
+			a_sum = a_sum - a_arr[this_id];
+			storage.setItem('sumA',a_sum);
+			$("#a_sum").html(a_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[3].innerHTML = 0;
+			storage.setItem('a_'+this_id,0);
+			a_arr[this_id] = parseInt(storage.getItem('a_'+this_id));
 
-   		b_sum = b_sum - b_arr[this_id];
-		storage.setItem('sumB',b_sum);
-   		$("#b_sum").html(b_sum);
-		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
-		storage.setItem('b_'+this_id,0);
-		b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
+			b_sum = b_sum - b_arr[this_id];
+			storage.setItem('sumB',b_sum);
+			$("#b_sum").html(b_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[4].innerHTML = 0;
+			storage.setItem('b_'+this_id,0);
+			b_arr[this_id] = parseInt(storage.getItem('b_'+this_id));
 
-   		c_sum = c_sum - c_arr[this_id];
-		storage.setItem('sumC',c_sum);
-   		$("#c_sum").html(c_sum);
-		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[6].innerHTML = 0;
-		storage.setItem('c_'+this_id,0);
-		c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
+			c_sum = c_sum - c_arr[this_id];
+			storage.setItem('sumC',c_sum);
+			$("#c_sum").html(c_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[6].innerHTML = 0;
+			storage.setItem('c_'+this_id,0);
+			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
-   		d_sum = d_sum - d_arr[this_id];
-		storage.setItem('sumD',d_sum);
-   		$("#d_sum").html(d_sum);
-		document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
-		storage.setItem('d_'+this_id,0);
-		d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
+			d_sum = d_sum - d_arr[this_id];
+			storage.setItem('sumD',d_sum);
+			$("#d_sum").html(d_sum);
+			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
+			storage.setItem('d_'+this_id,0);
+			d_arr[this_id] = parseInt(storage.getItem('d_'+this_id));
 
-   		pre_id = this_id-1;
-   		if (this_id>1) {
-    		$("."+pre_id+" .delete_c").show();
-    	}
+			pre_id = this_id-1;
+			if (this_id>1) {
+				$("."+pre_id+" .delete_c").show();
+			}
 		}
 	});
 
@@ -416,12 +412,15 @@ $(document).ready(function(){
 	$("#add_data").click(function(){
 		window.location.href='add.html';
 	});
+	// 跳转进入设置玩家界面
 	$("#set_player").click(function(){
 		window.location.href='setPlayer.html';
 	});
+	// 跳转回首页
 	$("#back").click(function(){
 		window.location.href='index.html';
 	});
+	// 跳转至查看历史界面
 	$("#view_history").click(function(){
 		window.location.href='viewHistory.html';
 	});
@@ -429,12 +428,12 @@ $(document).ready(function(){
 	$('#tbody').on("click",'.left', function() {
 		window.location.href='modify.html';
 	});
-	/*新增一局的预设按钮*/
+	// 新增一局的预设按钮
 	$("#set_sum").click(function(){
 		window.location.href='setSum.html';
 	});
 
-// 历史记录页面，若跳转进入修改记录页面，对记录进行修改，并同步局数
+	// 历史记录页面，若跳转进入修改记录页面，对记录进行修改，并同步局数
 	for (i = 1; i < 50; i++) {
 		$("."+i).click(function(){
 			game_index = $(this).attr('class');
@@ -469,7 +468,7 @@ $(document).ready(function(){
 			 storage.setItem('a_'+game_index,mod_a);
 			 a_arr[game_index] = parseInt(storage.getItem('a_'+game_index));
 			 a_sum = a_sum + a_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('sumA',a_sum);//主界面的总分
+			 storage.setItem('sumA',a_sum);
 			 $("#a_sum").html(a_sum);
 
 			 b_sum = b_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[4].innerHTML;//总分先减去原单元格的分数
@@ -477,7 +476,7 @@ $(document).ready(function(){
 			 storage.setItem('b_'+game_index,mod_b);
 			 b_arr[game_index] = parseInt(storage.getItem('b_'+game_index));
 			 b_sum = b_sum + b_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('sumB',b_sum);//主界面的总分
+			 storage.setItem('sumB',b_sum);
 			 $("#b_sum").html(b_sum);
 
 			 c_sum = c_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[6].innerHTML;//总分先减去原单元格的分数
@@ -485,7 +484,7 @@ $(document).ready(function(){
 			 storage.setItem('c_'+game_index,mod_c);
 			 c_arr[game_index] = parseInt(storage.getItem('c_'+game_index));
 			 c_sum = c_sum + c_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('sumC',c_sum);//主界面的总分
+			 storage.setItem('sumC',c_sum);
 			 $("#c_sum").html(c_sum);
 
 			 d_sum = d_sum - document.getElementById("tbody").getElementsByTagName("tr")[game_index-1].childNodes[7].innerHTML;//总分先减去原单元格的分数
@@ -493,7 +492,7 @@ $(document).ready(function(){
 			 storage.setItem('d_'+game_index,mod_d);
 			 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
 			 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('sumD',d_sum);//主界面的总分
+			 storage.setItem('sumD',d_sum);
 			 $("#d_sum").html(d_sum);
 
 			 $("#save_suc").show();
@@ -506,7 +505,7 @@ $(document).ready(function(){
 		 }
 	 });
 
-	/*自动保存*/
+	// 自动保存
 	function auto_save() {
 		var old_data = $("#1").parent().parent().html();
 		//console.log(old_data);

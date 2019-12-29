@@ -22,14 +22,14 @@ function startdraw(){
   			return a-b;
     })
   
-  if (-arr[0]>=arr[1] && -arr[0]>=arr[2] && -arr[0]>=arr[3]) {
+  if ((-arr[0]>=arr[1] && -arr[0]>=arr[2] && -arr[0]>=arr[3]) || aver==0){
     $("#myCanvas").show();
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     var v = new histogram(ctx,jasonData,(parseInt(-arr[0]/10)+1)*10); // 调用histogram.js中的函数
     v.draw();
   }
-  else{
+  else if(aver > 0){
     $("#myCanvas").show();
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
