@@ -8,22 +8,12 @@
   font-size: 20px;
   background-color: #5897fc;
 }
-/*
-@media screen and (min-width:769px){
-  .col-md-8{
-    margin-left: 50px;
-  }
-}
-@media screen and (min-width:1170px){
-  .col-md-8{
-    margin-left: 100px;
-  }
-}
-*/
+
 td,
 th{
   text-align: center;
 }
+/* 四种不同颜色填充的区域 */
 #wanjia{
   background-color:rgba(255, 240, 191);
 }
@@ -67,7 +57,6 @@ th{
 /*新增一局界面的按钮*/
 #add_row,#save,#zero,#back,#confirm_mod,#set_sum,#confirm_sum
 {
-
   display: inline-block;
   padding: 6px 12px;
   margin: 12px 15px 3px 15px;
@@ -181,6 +170,7 @@ th{
   text-align: center;
 }
 
+/* 返回键 */
 .arrow-box{
     width: 40px; /*背景作为容器设置为方形*/
     height: 40px;
@@ -189,7 +179,6 @@ th{
     background: #50a8fa; /*蓝色背景*/
     margin-top: 20px;
 }
-
 
 .arrow{
     width: 10px;
