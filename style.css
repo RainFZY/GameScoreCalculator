@@ -53,9 +53,8 @@ th{
   border:3px inset #50a8fa;
 }
 
-
-/*新增一局界面的按钮*/
-#add_row,#save,#zero,#back,#confirm_mod,#set_sum,#confirm_sum
+/*保存按钮*/
+#save,#zero,#back,#confirm_mod,#confirm_sum
 {
   display: inline-block;
   padding: 6px 12px;
@@ -97,6 +96,28 @@ th{
   background-color: #fff;
   border-color: #ccc;
   width: 80px;
+}
+
+/*新增一局界面的按钮*/
+#add_row,#set_sum,#clear{
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 10px 5px 0px 5px;
+  font-size: 14px;
+  font-weight:bold;
+  line-height: 2;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 90px;
 }
 
 /*首页的按钮*/

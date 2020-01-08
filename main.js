@@ -48,7 +48,7 @@ $(document).ready(function(){
 	}
 
 
-	//修改记录界面输入框同步当局分数
+	// 修改记录界面输入框同步当局分数
 	mod_a = storage.getItem('mod_a');
 	$("#mod_a").val(mod_a);
 	mod_b = storage.getItem('mod_b');
@@ -319,6 +319,14 @@ $(document).ready(function(){
 			$("#save_fail").show();
 			setTimeout(function(){$("#save_fail").hide()},5000);
 		}
+	});
+
+	// 新增一局的清空按钮
+	$("#clear").click(function(){
+		$("#set_a").val('');
+		$("#set_b").val('');
+		$("#set_c").val('');
+		$("#set_d").val('');
 	});
 
 	//玩家设置的保存按钮
