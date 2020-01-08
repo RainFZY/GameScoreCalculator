@@ -42,7 +42,8 @@ th{
 
 #set_a,#set_b,#set_c,#set_d,
 #mod_a,#mod_b,#mod_c,#mod_d,
-#sizing-addon2,#game_sum,
+#sizing-addon1,#sizing-addon2,#sizing-addon3,#sizing-addon4,
+#game_sum,
 #text1,#text2,#text3,#text4,
 .input-group-addon{
   text-align: center;
@@ -76,7 +77,7 @@ th{
   width: 80px;
 }
 /*玩家设置界面的按钮*/
-#add_player,#save_player
+#add_player,#save_player,#set_player_num
 {
   display: inline-block;
   padding: 6px 12px;
@@ -121,7 +122,9 @@ th{
 }
 
 /*首页的按钮*/
-#set_player,#add_data,#view_history{
+#set_player,#add_data,#view_history,
+#set_2players,#set_3players,#set_4players
+{
   display: inline-block;
   padding: 6px 12px;
   margin: 0px 5px 0px 5px;

@@ -2,6 +2,60 @@ var storage = window.localStorage;
 
 $(document).ready(function(){
 
+	var sizing3 = document.getElementById("sizing-addon3");
+	var sizing4 = document.getElementById("sizing-addon4");
+	var setC = document.getElementById("set_c");
+	var setD = document.getElementById("set_d");
+	var set_playerC = document.getElementById("set_playerC");
+	var set_playerD = document.getElementById("set_playerD");
+	var text3 = document.getElementById("text3");
+	var text4 = document.getElementById("text4");
+	var modC = document.getElementById("mod_c");
+	var modD = document.getElementById("mod_d");
+	
+	if(storage.getItem('displayC')==null){
+		var displayC = 1;
+	}
+	else{
+		var displayC=storage.getItem('displayC');
+	}
+
+	if(storage.getItem('displayD')==null){
+		var displayD = 1;
+	}
+	else{
+		var displayD=storage.getItem('displayD');
+	}
+
+	if(displayC == 0){
+		storage.setItem('cKey','');
+		$("#playerC").html('');
+		$("#set_playerC").val('');
+		$("#c_sum").html('');
+		$("#set_c").val(0);
+		$("#mod_c").val(0);
+		
+		if(sizing3 != null){sizing3.style.display="none";}
+		if(setC != null){setC.style.display="none";}
+		if(set_playerC != null){set_playerC.style.display="none";}
+		if(text3 != null){text3.style.display="none";}
+		if(modC != null){modC.style.display="none";}
+	}
+	if(displayD == 0){
+		storage.setItem('dKey','');
+		$("#playerD").html('');
+		$("#set_playerD").val('');
+		$("#d_sum").html('');
+		$("#set_d").val(0);
+		$("#mod_d").val(0);
+		
+		if(sizing4 != null){sizing4.style.display="none";}
+		if(setD != null){setD.style.display="none";}
+		if(set_playerD != null){set_playerD.style.display="none";}
+		if(text4 != null){text4.style.display="none";}
+		if(modD != null){modD.style.display="none";}
+	}
+
 	$("#tbody").append(storage.data);
 	// 设置玩家界面的玩家id
 	$("#playerA").append(storage.aKey);
@@ -82,20 +136,26 @@ $(document).ready(function(){
 	if(storage.getItem('sumC')==null){
 		c_sum = 0;
 	}
+	else if(displayC==0){
+		c_sum = '';
+	}
 	else{
 		c_sum = parseInt(storage.getItem('sumC'));
 	}
 
-	if(storage.getItem('sumD')==null){
+	if(storage.getItem('d_sum')==null){
 		d_sum = 0;
 	}
+	else if(displayD==0){
+		d_sum = '';
+	}
 	else{
-		d_sum = parseInt(storage.getItem('sumD'));
+		d_sum = parseInt(storage.getItem('d_sum'));
 	}
 	$("#a_sum").append(storage.sumA);
 	$("#b_sum").append(storage.sumB);
 	$("#c_sum").append(storage.sumC);
-	$("#d_sum").append(storage.sumD);
+	$("#d_sum").append(storage.d_sum);
 
 	/*显示总分*/
 	// html()意思是显示其html内容
@@ -203,7 +263,7 @@ $(document).ready(function(){
 			storage.setItem('sumA',a_sum);
 			storage.setItem('sumB',b_sum);
 			storage.setItem('sumC',c_sum);
-			storage.setItem('sumD',d_sum);
+			storage.setItem('d_sum',d_sum);
 			storage.setItem('game_num',game_num);
 			// return false;
 		}
@@ -236,6 +296,8 @@ $(document).ready(function(){
 		var set_b = $("#set_b").val();
 		var set_c = $("#set_c").val();
 		var set_d = $("#set_d").val();
+		var displayC = storage.getItem('displayC');
+		var displayD = storage.getItem('displayD');
 		game_sum = storage.getItem('game_sum');
 		// 输入了三个分数，根据预设总分自动填补第四个分数
 		if(set_a == "" && set_b != "" && set_c != "" && set_d != ""){
@@ -254,6 +316,40 @@ $(document).ready(function(){
 			set_d = game_sum - set_a - set_b - set_c;
 			$("#set_d").val(set_d);
 		}
+		// 只有三位玩家的情况
+		// else if(displayD == 0){
+		// 	set_d = 0;
+		// 	if(set_a == "" && set_b != "" && set_c != ""){
+		// 		set_a = game_sum - set_b -set_c;
+		// 		$("#set_a").val(set_a);
+		// 	}
+		// 	else if(set_b == "" && set_a != "" && set_c != ""){
+		// 		set_b = game_sum - set_a -set_c;
+		// 		$("#set_b").val(set_b);
+		// 	}
+		// 	else if(set_c == "" && set_a != "" && set_b != ""){
+		// 		set_c = game_sum - set_a -set_b;
+		// 		$("#set_c").val(set_c);
+		// 		console.log(set_a);
+		// 		console.log(set_b);
+		// 		console.log(set_c);
+		// 		console.log(set_d);
+		// 	}
+		// }
+		
+		// 只有两位玩家的情况
+		// else if(displayC == 0 && set_a == "" && set_b != ""){
+		// 	set_a = game_sum - set_b;
+		// 	$("#set_a").val(set_a);
+		// 	set_c = 0
+		// 	set_d = 0;
+		// }
+		// else if(displayC == 0 && set_b == "" && set_a != ""){
+		// 	set_b = game_sum - set_a;
+		// 	$("#set_b").val(set_b);
+		// 	set_c = 0
+		// 	set_d = 0;
+		// }
 
 		// tbody部分所有数据
 		var old_data = $("#1").parent().parent().html();
@@ -281,18 +377,23 @@ $(document).ready(function(){
 				b_sum = b_sum + b_arr[trows];
 				storage.setItem('sumB',b_sum);
 				$("#b_sum").html(b_sum);
+				
+				if(displayC==1){
+					storage.setItem('c_'+trows,set_c);
+					c_arr[trows] = parseInt(storage.getItem('c_'+trows));
+					c_sum = c_sum + c_arr[trows];
+					storage.setItem('sumC',c_sum);
+					$("#c_sum").html(c_sum);
+				}
 
-				storage.setItem('c_'+trows,set_c);
-				c_arr[trows] = parseInt(storage.getItem('c_'+trows));
-				c_sum = c_sum + c_arr[trows];
-				storage.setItem('sumC',c_sum);
-				$("#c_sum").html(c_sum);
+				if(displayD==1){
+					storage.setItem('d_'+trows,set_d);
+					d_arr[trows] = parseInt(storage.getItem('d_'+trows));
+					d_sum = d_sum + d_arr[trows];
+					storage.setItem('d_sum',d_sum);
+					$("#d_sum").html(d_sum);
+				}
 
-				storage.setItem('d_'+trows,set_d);
-				d_arr[trows] = parseInt(storage.getItem('d_'+trows));
-				d_sum = d_sum + d_arr[trows];
-				storage.setItem('sumD',d_sum);
-				$("#d_sum").html(d_sum);
 				//游戏局数
 				game_num += 1;
 				storage.setItem('game_num',game_num);
@@ -329,7 +430,37 @@ $(document).ready(function(){
 		$("#set_d").val('');
 	});
 
-	//玩家设置的保存按钮
+	// 玩家设置→预设按钮→选择玩家人数按钮
+	$("#set_2players").click(function(){
+		storage.setItem('displayC',0);
+		storage.setItem('displayD',0);
+		// 显示成功设置
+		$("#save_suc").show();
+		if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+		}
+	});
+	$("#set_3players").click(function(){
+		storage.setItem('displayC',1);
+		storage.setItem('displayD',0);
+		// 显示成功设置
+		$("#save_suc").show();
+		if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+		}
+	});
+	$("#set_4players").click(function(){
+		storage.setItem('displayC',1);
+		storage.setItem('displayD',1);
+		// 显示成功设置
+		$("#save_suc").show();
+		if ($("#save_suc").is(":visible")) {
+			setTimeout(function(){$("#save_suc").hide()},5000);
+		}
+	});
+
+
+	// 玩家设置的保存按钮
 	$("#save_player").click(function(){
 		var player_a = $("#set_playerA").val();
 		var player_b = $("#set_playerB").val();
@@ -402,7 +533,7 @@ $(document).ready(function(){
 			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
 			d_sum = d_sum - d_arr[this_id];
-			storage.setItem('sumD',d_sum);
+			storage.setItem('d_sum',d_sum);
 			$("#d_sum").html(d_sum);
 			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
 			storage.setItem('d_'+this_id,0);
@@ -439,6 +570,10 @@ $(document).ready(function(){
 	// 新增一局的预设按钮
 	$("#set_sum").click(function(){
 		window.location.href='setSum.html';
+	});
+	// 设置玩家的预设按钮
+	$("#set_player_num").click(function(){
+		window.location.href='setPlayerNum.html';
 	});
 
 	// 历史记录页面，若跳转进入修改记录页面，对记录进行修改，并同步局数
@@ -500,7 +635,7 @@ $(document).ready(function(){
 			 storage.setItem('d_'+game_index,mod_d);
 			 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
 			 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('sumD',d_sum);
+			 storage.setItem('d_sum',d_sum);
 			 $("#d_sum").html(d_sum);
 
 			 $("#save_suc").show();

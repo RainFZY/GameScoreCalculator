@@ -1,0 +1,60 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 网页标签上的文字 -->
+  <title>我是计分器</title>
+  <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="./jquery.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+  <!-- 返回键 -->
+  <div style="margin-top:30px;">
+    <a href="#" onclick="javascript:history.back(-1);">
+      <div class="arrow-box nav-left ml-20 mr-10">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-12 col-xs-12">
+    <!-- h1到h6标签可定义标题，h1最大 -->
+    <h3 style="text-align: center;" margin-top=0px;>选择玩家人数</h3>
+  </div>
+
+
+  <div class="col-md-12 col-xs-12 setting">
+    <div class="data">
+        <input type="button" value="2" id="set_2players" style="border:3px outset #50a8fa;"/>
+        <input type="button" value="3" id="set_3players" style="border:3px outset #50a8fa;"  />
+        <input type="button" value="4" id="set_4players" style="border:3px outset #50a8fa;"/>
+    </div>
+  </div>
+
+  <div class="col-md-12 col-xs-12 setting" style="margin-top:20px;">
+    <div class="alert alert-danger alert-dismissable" id="save_fail">
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      请输入非负整数！
+    </div>
+
+    <div class="alert alert-info alert-dismissable" id="save_suc" >
+      <button type="button" class="close" data-dismiss="alert"
+        aria-hidden="true">
+        &times;
+      </button>
+      设置成功！
+    </div>
+  </div>
+</body>
+
+<script src="./main.js"></script>
+<script src="./quickwin.js"></script>
+</html>
