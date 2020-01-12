@@ -426,8 +426,18 @@ $(document).ready(function(){
 	$("#clear").click(function(){
 		$("#set_a").val('');
 		$("#set_b").val('');
-		$("#set_c").val('');
-		$("#set_d").val('');
+		if(displayC==0 && displayC==0){
+			$("#set_c").val(0);
+			$("#set_d").val(0);
+		}
+		else if(displayC==1 && displayD==0){
+			$("#set_c").val('');
+			$("#set_d").val(0);
+		}
+		else{
+			$("#set_c").val('');
+			$("#set_d").val('');
+		}
 	});
 
 	// 玩家设置→预设按钮→选择玩家人数按钮
