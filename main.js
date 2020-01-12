@@ -143,19 +143,19 @@ $(document).ready(function(){
 		c_sum = parseInt(storage.getItem('sumC'));
 	}
 
-	if(storage.getItem('d_sum')==null){
+	if(storage.getItem('sumD')==null){
 		d_sum = 0;
 	}
 	else if(displayD==0){
 		d_sum = '';
 	}
 	else{
-		d_sum = parseInt(storage.getItem('d_sum'));
+		d_sum = parseInt(storage.getItem('sumD'));
 	}
 	$("#a_sum").append(storage.sumA);
 	$("#b_sum").append(storage.sumB);
 	$("#c_sum").append(storage.sumC);
-	$("#d_sum").append(storage.d_sum);
+	$("#d_sum").append(storage.sumD);
 
 	/*显示总分*/
 	// html()意思是显示其html内容
@@ -263,7 +263,7 @@ $(document).ready(function(){
 			storage.setItem('sumA',a_sum);
 			storage.setItem('sumB',b_sum);
 			storage.setItem('sumC',c_sum);
-			storage.setItem('d_sum',d_sum);
+			storage.setItem('sumD',d_sum);
 			storage.setItem('game_num',game_num);
 			// return false;
 		}
@@ -316,40 +316,7 @@ $(document).ready(function(){
 			set_d = game_sum - set_a - set_b - set_c;
 			$("#set_d").val(set_d);
 		}
-		// 只有三位玩家的情况
-		// else if(displayD == 0){
-		// 	set_d = 0;
-		// 	if(set_a == "" && set_b != "" && set_c != ""){
-		// 		set_a = game_sum - set_b -set_c;
-		// 		$("#set_a").val(set_a);
-		// 	}
-		// 	else if(set_b == "" && set_a != "" && set_c != ""){
-		// 		set_b = game_sum - set_a -set_c;
-		// 		$("#set_b").val(set_b);
-		// 	}
-		// 	else if(set_c == "" && set_a != "" && set_b != ""){
-		// 		set_c = game_sum - set_a -set_b;
-		// 		$("#set_c").val(set_c);
-		// 		console.log(set_a);
-		// 		console.log(set_b);
-		// 		console.log(set_c);
-		// 		console.log(set_d);
-		// 	}
-		// }
-		
-		// 只有两位玩家的情况
-		// else if(displayC == 0 && set_a == "" && set_b != ""){
-		// 	set_a = game_sum - set_b;
-		// 	$("#set_a").val(set_a);
-		// 	set_c = 0
-		// 	set_d = 0;
-		// }
-		// else if(displayC == 0 && set_b == "" && set_a != ""){
-		// 	set_b = game_sum - set_a;
-		// 	$("#set_b").val(set_b);
-		// 	set_c = 0
-		// 	set_d = 0;
-		// }
+
 
 		// tbody部分所有数据
 		var old_data = $("#1").parent().parent().html();
@@ -390,7 +357,7 @@ $(document).ready(function(){
 					storage.setItem('d_'+trows,set_d);
 					d_arr[trows] = parseInt(storage.getItem('d_'+trows));
 					d_sum = d_sum + d_arr[trows];
-					storage.setItem('d_sum',d_sum);
+					storage.setItem('sumD',d_sum);
 					$("#d_sum").html(d_sum);
 				}
 
@@ -426,7 +393,7 @@ $(document).ready(function(){
 	$("#clear").click(function(){
 		$("#set_a").val('');
 		$("#set_b").val('');
-		if(displayC==0 && displayC==0){
+		if(displayC==0 && displayD==0){
 			$("#set_c").val(0);
 			$("#set_d").val(0);
 		}
@@ -543,7 +510,7 @@ $(document).ready(function(){
 			c_arr[this_id] = parseInt(storage.getItem('c_'+this_id));
 
 			d_sum = d_sum - d_arr[this_id];
-			storage.setItem('d_sum',d_sum);
+			storage.setItem('sumD',d_sum);
 			$("#d_sum").html(d_sum);
 			document.getElementById("tbody").getElementsByTagName("tr")[this_id-1].childNodes[7].innerHTML = 0;
 			storage.setItem('d_'+this_id,0);
@@ -645,7 +612,7 @@ $(document).ready(function(){
 			 storage.setItem('d_'+game_index,mod_d);
 			 d_arr[game_index] = parseInt(storage.getItem('d_'+game_index));
 			 d_sum = d_sum + d_arr[game_index];//再加上新的修改后分数
-			 storage.setItem('d_sum',d_sum);
+			 storage.setItem('sumD',d_sum);
 			 $("#d_sum").html(d_sum);
 
 			 $("#save_suc").show();
