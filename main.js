@@ -523,22 +523,21 @@ $(document).ready(function(){
 		}
 	});
 
-
+	// 跳转回首页
+	$("#back").click(function(){
+		window.location.href='main.html';
+	});
 	// 跳转进入新增一局界面
 	$("#add_data").click(function(){
-		window.location.href='add.html';
+		window.location.href='subPages/add.html';
 	});
 	// 跳转进入设置玩家界面
 	$("#set_player").click(function(){
-		window.location.href='setPlayer.html';
-	});
-	// 跳转回首页
-	$("#back").click(function(){
-		window.location.href='index.html';
+		window.location.href='subPages/setPlayer.html';
 	});
 	// 跳转至查看历史界面
 	$("#view_history").click(function(){
-		window.location.href='viewHistory.html';
+		window.location.href='subPages/viewHistory.html';
 	});
 	// 历史记录界面，点击表格除了清楚栏的区域，跳转至修改记录界面
 	$('#tbody').on("click",'.left', function() {
